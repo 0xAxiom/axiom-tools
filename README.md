@@ -21,4 +21,5 @@ node tools/axiom-burn-stats/index.mjs --pretty
 Active build lane (2026-05-26). Sibling repos:
 - `~/Github/0xAxiom/soulforge/` — Soulforge runtime
 - `~/Github/0xAxiom/normies-tools/` — Normies tooling
+- `~/Github/0xAxiom/opensea-tools/` — OpenSea / NFT-flavored tooling (separate API, separate audience)
 
