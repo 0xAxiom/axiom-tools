@@ -36,9 +36,10 @@
       "slug": "axiom-whale-alerts",
       "title": "Tagged whale-transfer push feed",
       "spec": "Webhook subscription endpoint. POST { token, threshold_usd, webhook_url } to subscribe. We watch Transfer logs on Base, and when a transfer >= threshold_usd fires, POST the event to webhook_url with a cohort tag: { staker | dumper | LP-add | LP-remove | new-wallet | exchange-deposit | exchange-withdraw }. Cohort classification uses wallet history (xAXIOM holdings, prior Transfer patterns, known CEX hot wallets).",
-      "status": "pending",
+      "status": "building",
       "priority": 2,
-      "rationale": "Push instead of pull — different shape from the other 3 endpoints. Cohort tagging is the moat (anyone can watch big transfers; nobody else tags 'dumper vs LP-add' inline). Agents subscribe + react."
+      "rationale": "Push instead of pull — different shape from the other 3 endpoints. Cohort tagging is the moat (anyone can watch big transfers; nobody else tags 'dumper vs LP-add' inline). Agents subscribe + react.",
+      "started_at": "2026-05-27T17:00:06.446Z"
     },
     {
       "slug": "axiom-sweep-forecast",

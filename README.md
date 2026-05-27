@@ -10,8 +10,9 @@ Paid agent endpoints for the AXIOM ecosystem. Single Vercel project, every tool 
 |------|-------------|------|
 | [axiom-burn-stats](tools/axiom-burn-stats/) | Live $AXIOM burn stats: canonical burned, event count, recent burns | Free (demo) |
 | [axiom-narrative-pulse](tools/axiom-narrative-pulse/) | Crypto/AI narrative map: phase, velocity, drivers, position calls | x402 $0.01 |
-| axiom-influence-impact | CT-account → onchain-volume attribution per token | 🔜 queued |
-| axiom-whale-alerts | Webhook push feed for large transfers with cohort tagging | 🔜 queued |
+| [axiom-influence-impact](tools/axiom-influence-impact/) | CT-account → onchain-volume attribution per token | x402 $0.01 |
+| [axiom-whale-alerts](tools/axiom-whale-alerts/) | Webhook push feed for large transfers with cohort tagging | x402 $0.01 |
+| [agent-binding-scout](tools/agent-binding-scout/) | ERC-8217 agent-bound NFTs in any OpenSea collection, with binding payload | x402 $0.01 |
 | axiom-sweep-forecast | NFT sweep-quote + forward floor projection | 🔜 queued |
 
 The 3 queued endpoints will ship via the [`endpoint-builder` cron](scripts/endpoint-builder.mjs), which consults `~/clawd/ideabank.md` for demand signals before each pick and orders the queue by priority.

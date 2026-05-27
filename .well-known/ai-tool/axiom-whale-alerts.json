@@ -1,0 +1,173 @@
+{
+  "$schema": "https://erc-8257.org/schema/v0.1.json",
+  "name": "axiom-whale-alerts",
+  "version": "1.0.0",
+  "description": "Push-style tagged whale-transfer feed for $AXIOM on Base. POST to subscribe a webhook with a USD threshold; every ERC-20 Transfer at/above that threshold is classified into one of seven cohort tags (staker, dumper, LP-add, LP-remove, new-wallet, exchange-deposit, exchange-withdraw) and pushed to the subscriber. GET returns the current matching event list directly. Anyone can watch big transfers; the moat is the inline cohort tag — 'whale dumped' vs 'whale added LP' vs 'CEX deposit' is what agents actually need to route on.",
+  "url": "https://axiom-tools-hazel.vercel.app/api/axiom-whale-alerts",
+  "pricing": {
+    "type": "x402",
+    "amount": "0.01",
+    "asset": "USDC",
+    "chain": "base",
+    "passBypass": {
+      "contract": "0xfc9ce3990f85fA1A3a0eE51a710642396a6Cad82",
+      "description": "AXIOM Tool Pass holders skip the paywall"
+    }
+  },
+  "authentication": {
+    "type": "x402",
+    "header": "x-payment",
+    "bypassHeader": "x-pass-holder"
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "method": {
+        "type": "string",
+        "enum": ["GET", "POST"],
+        "description": "GET = read current feed. POST = subscribe a webhook + receive a preview of currently matching events."
+      },
+      "query": {
+        "type": "object",
+        "description": "GET query params",
+        "properties": {
+          "threshold_usd": {
+            "type": "number",
+            "minimum": 0,
+            "default": 1000,
+            "description": "Minimum USD value to include. Events below this are dropped."
+          },
+          "cohort": {
+            "type": "string",
+            "enum": ["staker", "dumper", "LP-add", "LP-remove", "new-wallet", "exchange-deposit", "exchange-withdraw"],
+            "description": "Optional cohort filter."
+          }
+        }
+      },
+      "body": {
+        "type": "object",
+        "description": "POST body (subscribe)",
+        "properties": {
+          "token":         { "type": "string", "description": "0x-prefixed ERC-20 address. Currently only $AXIOM (0xf3Ce5dDAAb6C133F9875a4a46C55cf0b58111B07) is supported." },
+          "threshold_usd": { "type": "number", "minimum": 0.01, "description": "Trigger every transfer ≥ this USD value." },
+          "webhook_url":   { "type": "string", "format": "uri", "description": "https URL to POST tagged events to." }
+        },
+        "required": ["token", "threshold_usd", "webhook_url"]
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "token":          { "type": "string" },
+      "fetchedAt":      { "type": "string", "format": "date-time" },
+      "priceUsd":       { "type": "number", "description": "Token price (DexScreener) used to USD-value transfers" },
+      "window":         {
+        "type": "object",
+        "properties": {
+          "fromBlock": { "type": "integer" },
+          "toBlock":   { "type": "integer" },
+          "blocks":    { "type": "integer" }
+        }
+      },
+      "thresholdUsd":   { "type": "number" },
+      "discoveredPairs":{ "type": "array",  "items": { "type": "string" }, "description": "Pair / pool-singleton addresses used for LP & dumper classification" },
+      "cohortCounts":   { "type": "object", "additionalProperties": { "type": "integer" } },
+      "events": {
+        "type": "array",
+        "description": "Tagged whale transfers, newest-first, deduped per tx",
+        "items": {
+          "type": "object",
+          "properties": {
+            "cohort":      { "type": "string", "enum": ["staker", "dumper", "LP-add", "LP-remove", "new-wallet", "exchange-deposit", "exchange-withdraw"] },
+            "txHash":      { "type": "string" },
+            "logIndex":    { "type": "integer" },
+            "blockNumber": { "type": "integer" },
+            "timestamp":   { "type": "string", "format": "date-time" },
+            "from":        { "type": "string" },
+            "to":          { "type": "string" },
+            "amountRaw":   { "type": "string", "description": "uint256 raw amount" },
+            "amount":      { "type": "string", "description": "Human-readable AXIOM amount" },
+            "tokens":      { "type": "number", "description": "Float AXIOM amount" },
+            "valueUsd":    { "type": "number", "description": "USD value at fetch-time price" }
+          }
+        }
+      },
+      "subscription": {
+        "type": "object",
+        "description": "Only present on POST responses",
+        "properties": {
+          "id":           { "type": "string" },
+          "token":        { "type": "string" },
+          "thresholdUsd": { "type": "number" },
+          "webhookUrl":   { "type": "string", "format": "uri" },
+          "acceptedAt":   { "type": "string", "format": "date-time" },
+          "deliveryNote": { "type": "string" }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "GET the current tagged whale feed (default $1k threshold)",
+      "request": { "method": "GET" },
+      "response": {
+        "token": "0xf3Ce5dDAAb6C133F9875a4a46C55cf0b58111B07",
+        "fetchedAt": "2026-05-27T17:12:47.234Z",
+        "priceUsd": 0.000001253,
+        "thresholdUsd": 1000,
+        "cohortCounts": { "dumper": 3, "LP-add": 1 },
+        "events": [
+          {
+            "cohort": "dumper",
+            "txHash": "0x72fef4616e…",
+            "blockNumber": 46555820,
+            "timestamp": "2026-05-27T16:00:09.000Z",
+            "from": "0xe993f92f…",
+            "to": "0x498581ff…",
+            "amount": "319,616,838.49",
+            "valueUsd": 400.48
+          }
+        ]
+      }
+    },
+    {
+      "description": "Filter to dumper cohort only",
+      "request": { "method": "GET", "query": { "cohort": "dumper" } },
+      "response": { "events": ["..."] }
+    },
+    {
+      "description": "Subscribe a webhook at the $500 threshold",
+      "request": {
+        "method": "POST",
+        "body": {
+          "token": "0xf3Ce5dDAAb6C133F9875a4a46C55cf0b58111B07",
+          "threshold_usd": 500,
+          "webhook_url": "https://agent.example/whale-hook"
+        }
+      },
+      "response": {
+        "subscription": {
+          "id": "sub_aHR0cHM6Ly9hZ2VudC5leGE",
+          "token": "0xf3Ce5dDAAb6C133F9875a4a46C55cf0b58111B07",
+          "thresholdUsd": 500,
+          "webhookUrl": "https://agent.example/whale-hook",
+          "acceptedAt": "2026-05-27T17:30:00.000Z",
+          "deliveryNote": "Webhook POSTs are batched by the dispatch cron…"
+        },
+        "preview": { "cohortCounts": { "dumper": 2 }, "events": ["..."] }
+      }
+    }
+  ],
+  "contact": {
+    "name": "Axiom",
+    "url": "https://clawbots.org/axiom",
+    "x": "@AxiomBot"
+  },
+  "chain": {
+    "network": "base",
+    "chainId": 8453
+  },
+  "tags": ["defi", "whale-alerts", "webhook", "push", "cohort-tagging", "erc20", "base", "axiom", "agent-tools"],
+  "updatedAt": "2026-05-27"
+}
