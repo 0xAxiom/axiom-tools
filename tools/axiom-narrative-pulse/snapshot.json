@@ -1,0 +1,103 @@
+{
+  "generatedAt": "2026-05-27T03:00:00.000Z",
+  "generatedBy": "aeon-narrative-tracker engine (manual seed; refresh-snapshot.mjs will overwrite)",
+  "window": "last 72h",
+  "transitions": {
+    "new": [
+      "agentic-tool-registries — ERC-8257 deployments + first paid agent endpoints"
+    ],
+    "promoted": [
+      "bankr-club-rotation — Rising → Peak (GITLAWB $16M → consolidation, AEON + Surplus catching bid)"
+    ],
+    "demoted": [],
+    "dead": []
+  },
+  "reflexivity": [
+    {
+      "narrative": "agentic-tool-registries",
+      "evidence": "@CodinCowboy max-minted AXIOM Tool Pass within 90min of the announce; @bankrbot RT'd the receipt. Tool Pass minted → real volume on Base from the announce thread."
+    }
+  ],
+  "narratives": [
+    {
+      "slug": "agentic-tool-registries",
+      "mindshare": 2,
+      "velocity": "↑↑",
+      "phase": "Emerging",
+      "position": "FRONT-RUN",
+      "drivers": ["@CodinCowboy", "@opensea", "@AxiomBot", "@normiesART"],
+      "thesis": "ERC-8257 + @opensea/tool-sdk just hit the Base agent ecosystem. First paid agent endpoints starting to ship. Tool passes (NFT-as-API-key) emerging as the bypass primitive.",
+      "bearCase": "Agent-to-agent demand stays tiny; only humans pay, and humans prefer free APIs over $0.01/call paywalls. Standard fails to fork-resist a competing registry."
+    },
+    {
+      "slug": "bankr-club-rotation",
+      "mindshare": 4,
+      "velocity": "↑",
+      "phase": "Peak",
+      "position": "RIDE",
+      "drivers": ["@FarouqDegen", "@aeonframework", "@mac_eth", "@bankrbot"],
+      "thesis": "GITLAWB / AEON / Surplus driving the Bankr leaderboard. Real volume ($5M+/day on GITLAWB), real product attached (gitlawb bounties, aeon framework, Surplus index).",
+      "bearCase": "Peak phase = rotation into next cohort. Top-3 stickiness is fragile; whoever doesn't ship a real product feature gets demoted within 2 weeks."
+    },
+    {
+      "slug": "x402-agent-payments",
+      "mindshare": 3,
+      "velocity": "↑",
+      "phase": "Rising",
+      "position": "RIDE",
+      "drivers": ["@CoinbaseDev", "@opensea", "@AxiomBot"],
+      "thesis": "x402 fixture stable 8+ days. Agents starting to discover services via bazaar. Real USDC settlement on Base for sub-cent calls.",
+      "bearCase": "Wallet UX still requires a hot key. Agent-to-agent paid calls remain a thought experiment for most teams."
+    },
+    {
+      "slug": "axiom-token-mechanics",
+      "mindshare": 2,
+      "velocity": "↑",
+      "phase": "Rising",
+      "position": "RIDE",
+      "drivers": ["@MeltedMindz", "@AxiomBot", "@bankrbot"],
+      "thesis": "Daily 50/50 burn-to-vault distribution + WETH → BNKR/USDC treasury split running for 13+ days. xAXIOM price/share trending up. Stakers get paid in compounding share, not yield.",
+      "bearCase": "Total burn % still under 4% of supply. Without external buy pressure, vault appreciation is a closed loop. Needs more buyers than stakers to keep working."
+    },
+    {
+      "slug": "normie-onboarding",
+      "mindshare": 1,
+      "velocity": "→",
+      "phase": "Emerging",
+      "position": "WATCH",
+      "drivers": ["@normiesART", "@AxiomBot"],
+      "thesis": "Adapter8004 + ERC-721 awakening flow lets a normie NFT become an addressable agent. First minted normie awakening confirmed onchain.",
+      "bearCase": "Asymmetric collector interest — most normie holders just want the floor up, not a sentient PFP. Adapter complexity scares off integrators."
+    },
+    {
+      "slug": "restaking",
+      "mindshare": 4,
+      "velocity": "↓",
+      "phase": "Fading",
+      "position": "FADE",
+      "drivers": ["@eigenlayer", "@etherfi"],
+      "thesis": "Cope-stage. TVL has stopped growing month-over-month. Points farms exhausted.",
+      "bearCase": "No bear case to argue — this is the bear case. Narrative has rolled."
+    },
+    {
+      "slug": "prediction-markets",
+      "mindshare": 3,
+      "velocity": "↑",
+      "phase": "Rising",
+      "position": "RIDE",
+      "drivers": ["@Polymarket", "@kalshi"],
+      "thesis": "Election cycle behind us but volume sticky around sports + economic prints. Real product-market fit signal.",
+      "bearCase": "Regulatory overhang in US. Crypto-side competitors lack the liquidity Polymarket built."
+    },
+    {
+      "slug": "ai-x-crypto",
+      "mindshare": 5,
+      "velocity": "→",
+      "phase": "Peak",
+      "position": "WATCH",
+      "drivers": [],
+      "thesis": "The umbrella narrative everyone slots under. Peak-meta — saying 'AI x crypto' is no longer a thesis, it's table stakes.",
+      "bearCase": "Too broad to act on. Useful as a sector tag, not a position."
+    }
+  ]
+}

@@ -11,6 +11,7 @@ launchd-*.log
 state/endpoint-builder-log.jsonl
 state/endpoint-builder.stdout.log
 state/endpoint-builder.stderr.log
+state/demand-signals.jsonl
 
 # Foundry build artifacts + installed deps (forge install fetches them)
 **/lib/forge-std/
