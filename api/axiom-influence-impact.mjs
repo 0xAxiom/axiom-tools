@@ -27,6 +27,9 @@ export default async function handler(req, res) {
   if (!gate.allowed) {
     return res.status(402).json(gate.envelope);
   }
+  if (gate.settleResponseHeader) {
+    res.setHeader("x-payment-response", gate.settleResponseHeader);
+  }
 
   try {
     const snap = loadSnapshot();

@@ -1,53 +1,57 @@
 /**
- * x402 payment scaffolding for axiom-tools.
+ * x402 helpers for endpoints that grade access by tier rather than 402-or-200.
  *
- * Implements the x402 PaymentRequired response format (spec v1).
- * Ref: https://x402.org / github.com/coinbase/x402
+ * Used by tools like axiom-burn-stats whose manifest declares `pricing.type: "free"`
+ * but offer an extra "premium" slice (e.g. recentBurns history) to Tool Pass
+ * holders or x402 payers. The endpoint always returns HTTP 200 with a `_tier`
+ * field indicating which slice was served.
  *
- * Current state:
- *   - 402 response format: ✓ live
- *   - x-pass-holder onchain gate: ✓ live (balanceOf AXIOM Tool Pass)
- *   - x-payment signature verification: ⧗ TODO (needs x402 facilitator wiring)
+ * For 402-or-200 paid endpoints, use `checkAccess` in ./gate.mjs instead.
  *
- * Until full verification is wired, x-pass-holder is the production gate.
- * x-payment callers who can parse 402s correctly will get the full response
- * once the facilitator is wired.
+ * Three exports:
+ *   - `send402(res, endpoint, desc, amount)`  — legacy 402 helper (kept for compat)
+ *   - `hasToolPass(wallet)`                   — onchain Tool Pass check
+ *   - `resolveTier(req, opts)`                — verified tier resolution
+ *
+ * Zero deps.
  */
+
+import {
+  buildPaymentRequirements,
+  verifyPayment,
+  settlePayment,
+} from "./facilitator.mjs";
 
 // ─── constants ────────────────────────────────────────────────────────────────
 
-const PAY_TO     = "0x523Eff3dB03938eaa31a5a6FBd41E3B9d23edde5"; // Axiom treasury
-const USDC_BASE  = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"; // USDC on Base
-const BASE_RPC   = process.env.BASE_RPC_URL || "https://mainnet.base.org";
+const PAY_TO        = process.env.X402_PAY_TO || "0x523Eff3dB03938eaa31a5a6FBd41E3B9d23edde5";
+const USDC_BASE     = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
+const PASS_CONTRACT = "0xfc9ce3990f85fA1A3a0eE51a710642396a6Cad82"; // AXIOM Tool Pass on Base
+const BASE_RPC      = process.env.BASE_RPC_URL || "https://mainnet.base.org";
+const BALANCE_OF    = "0x70a08231";
 
-// AXIOM Tool Pass — ERC-721 on Base (placeholder addr; real one TBD)
-// When deployed: replace with actual contract address from ERC-8257 registry.
-const TOOL_PASS  = process.env.AXIOM_TOOL_PASS || null;
+const balanceCache = new Map(); // wallet → { balance: bigint, ts: number }
+const BALANCE_TTL  = 60_000;
 
-const BALANCE_OF = "0x70a08231"; // ERC-20/721 balanceOf(address) selector
-
-// ─── payment required response ────────────────────────────────────────────────
+// ─── payment required response (legacy helper) ────────────────────────────────
 
 /**
- * Build and send an HTTP 402 response with the proper x402 PaymentRequired body.
+ * Build and send an HTTP 402 response with the x402 PaymentRequired body.
+ * Retained for callers that need the bare 402 helper without the gate flow.
  *
- * @param {object} res      - Node/Vercel response object
- * @param {string} endpoint - Full URL of the gated resource
- * @param {string} desc     - Human-readable description shown in paywalls
- * @param {string} [amount] - USDC atomic units (6 decimals). Default "1000" = $0.001
+ * @param {object} res      Vercel/Node response
+ * @param {string} endpoint Full URL of the gated resource
+ * @param {string} desc     Human-readable description
+ * @param {string} [amount] USDC atomic units (6 decimals). Default "1000" = $0.001
  */
 export function send402(res, endpoint, desc, amount = "1000") {
   const paymentRequired = {
     x402Version: 1,
     error: "Payment required",
-    resource: {
-      url: endpoint,
-      description: desc,
-    },
     accepts: [
       {
         scheme: "exact",
-        network: "base-mainnet",
+        network: "base",
         asset: USDC_BASE,
         payTo: PAY_TO,
         maxAmountRequired: amount,
@@ -57,38 +61,38 @@ export function send402(res, endpoint, desc, amount = "1000") {
       },
     ],
   };
-
-  // Some clients look for the header too
   res.setHeader("x-payment-required", "true");
   res.setHeader("content-type", "application/json");
   res.status(402).json(paymentRequired);
 }
 
-// ─── pass holder gate ─────────────────────────────────────────────────────────
+// ─── pass holder check ────────────────────────────────────────────────────────
 
 /**
- * Returns true if the wallet holds ≥ 1 AXIOM Tool Pass (ERC-721).
- * Falls back to false if the contract address isn't configured yet.
- *
- * @param {string} wallet - Checksummed or lowercase 0x address
+ * Returns true if `wallet` holds ≥1 AXIOM Tool Pass.
+ * Cached for 60s. Onchain balanceOf via raw RPC (zero-dep).
  */
 export async function hasToolPass(wallet) {
-  if (!TOOL_PASS) return false;
-  if (!wallet || !wallet.startsWith("0x") || wallet.length < 40) return false;
+  const w = String(wallet || "").toLowerCase();
+  if (!/^0x[a-f0-9]{40}$/.test(w)) return false;
+
+  const cached = balanceCache.get(w);
+  if (cached && Date.now() - cached.ts < BALANCE_TTL) return cached.balance >= 1n;
 
   try {
-    const padded = wallet.slice(2).toLowerCase().padStart(64, "0");
+    const padded = w.slice(2).padStart(64, "0");
     const r = await fetch(BASE_RPC, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         jsonrpc: "2.0", id: 1, method: "eth_call",
-        params: [{ to: TOOL_PASS, data: BALANCE_OF + padded }, "latest"],
+        params: [{ to: PASS_CONTRACT, data: BALANCE_OF + padded }, "latest"],
       }),
     });
     const j = await r.json();
-    if (!j?.result || j.result === "0x" || j.result === "0x0") return false;
-    return BigInt(j.result) > 0n;
+    const bal = j?.result ? BigInt(j.result) : 0n;
+    balanceCache.set(w, { balance: bal, ts: Date.now() });
+    return bal >= 1n;
   } catch {
     return false;
   }
@@ -97,23 +101,35 @@ export async function hasToolPass(wallet) {
 // ─── tier resolution ──────────────────────────────────────────────────────────
 
 /**
- * Resolve request access tier from headers.
+ * Resolve request access tier from headers, with real x402 verification + settlement.
  *
- * Returns:
- *   "premium"  — x-pass-holder wallet verified onchain as pass holder
- *   "payment"  — x-payment header present (payment received but not yet verified)
- *   "free"     — no elevated header
+ * Order of evaluation:
+ *   1. `x-pass-holder: <wallet>` → onchain Tool Pass balance check
+ *      Returns "premium" if ≥1 Pass held.
+ *   2. `x-payment: <base64 authorization>` → facilitator verify + settle
+ *      Returns "payment" only if both verify and settle succeed onchain.
+ *   3. Otherwise → "free"
+ *
+ * Failed payment verifications/settlements degrade to "free" (the caller still
+ * returns HTTP 200 with the free-tier slice; no 402 is sent from this path).
+ *
+ * @param {import('@vercel/node').VercelRequest} req
+ * @param {{ price?: string, resource?: string, description?: string }} [opts]
+ * @returns {Promise<"free"|"premium"|"payment">}
  */
-export async function resolveTier(req) {
+export async function resolveTier(req, opts = {}) {
   const passHolder = req.headers["x-pass-holder"];
-  if (passHolder) {
-    const ok = await hasToolPass(passHolder);
-    if (ok) return "premium";
-  }
-  if (req.headers["x-payment"]) {
-    // TODO: call x402 facilitator to verify EIP-712 payment proof
-    // For now, treat as premium (will tighten once facilitator is wired)
+  if (passHolder && (await hasToolPass(passHolder))) return "premium";
+
+  const xPayment = req.headers["x-payment"];
+  if (xPayment) {
+    const requirements = buildPaymentRequirements(req, opts);
+    const verify = await verifyPayment(requirements, xPayment);
+    if (!verify.isValid) return "free";
+    const settle = await settlePayment(requirements, xPayment);
+    if (!settle.success) return "free";
     return "payment";
   }
+
   return "free";
 }
