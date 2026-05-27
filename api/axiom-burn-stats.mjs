@@ -1,11 +1,18 @@
 /**
- * GET /api/axiom-burn-stats — free demo tier.
+ * GET /api/axiom-burn-stats
  *
- * Returns live $AXIOM burn stats: total burned (canonical balanceOf 0xdEaD +
- * log-sum), event count, % of supply burned, 5 most recent burn txs.
+ * Returns live $AXIOM burn stats sourced from Blockscout getLogs + Base RPC.
  *
- * Source: Blockscout getLogs + Base RPC eth_call. 30s in-memory cache.
+ * Tiers:
+ *   free     — aggregates only (totals, % burned, event count)
+ *   premium  — free + recentBurns array (last 20 burn txs)
+ *              Requires: x-pass-holder: <wallet> with ≥1 AXIOM Tool Pass
+ *                     OR x-payment: <x402 proof> (facilitator TODO)
+ *
+ * Cache: 30s in-memory.
  */
+
+import { send402, resolveTier } from "./_lib/x402.mjs";
 
 const TOKEN   = "0xf3Ce5dDAAb6C133F9875a4a46C55cf0b58111B07";
 const DEAD    = "0x000000000000000000000000000000000000dEaD";
@@ -17,6 +24,8 @@ const BASE_RPC       = process.env.BASE_RPC_URL || "https://mainnet.base.org";
 const TRANSFER_TOPIC = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef";
 const DEAD_TOPIC     = "0x000000000000000000000000000000000000000000000000000000000000dead";
 const BALANCE_OF     = "0x70a08231";
+
+const ENDPOINT = "https://axiom-tools-hazel.vercel.app/api/axiom-burn-stats";
 
 const CACHE_TTL_MS = 30_000;
 let _cache = null;
@@ -60,7 +69,7 @@ async function getBurnStats() {
   let logTotal = 0n;
   for (const log of logs) logTotal += BigInt(log.data);
 
-  const recent = [...logs].reverse().slice(0, 5).map(log => ({
+  const recent = [...logs].reverse().slice(0, 20).map(log => ({
     txHash:          log.transactionHash,
     blockNumber:     parseInt(log.blockNumber, 16),
     timestamp:       new Date(parseInt(log.timeStamp, 16) * 1000).toISOString(),
@@ -87,19 +96,52 @@ async function getBurnStats() {
       canonicalBurned:    fmt(deadBalance),
       percentBurned:      ((Number(deadBalance) / Number(supplyRaw)) * 100).toFixed(4) + "%",
     },
-    recentBurns: recent,
+    recentBurns: recent, // full list; handler slices by tier
   };
 }
 
 export default async function handler(req, res) {
+  // OPTIONS (CORS preflight)
+  if (req.method === "OPTIONS") {
+    res.status(204).end();
+    return;
+  }
+
+  // Resolve tier before data fetch (pass-check is fast; avoids wasted upstream calls on bad wallets)
+  const tier = await resolveTier(req);
+
   try {
-    if (_cache && Date.now() - _cacheAt < CACHE_TTL_MS) {
-      return res.status(200).json(_cache);
+    // Populate / refresh cache
+    if (!_cache || Date.now() - _cacheAt > CACHE_TTL_MS) {
+      _cache = await getBurnStats();
+      _cacheAt = Date.now();
     }
-    _cache = await getBurnStats();
-    _cacheAt = Date.now();
+
+    const data = { ..._cache };
+
+    if (tier === "free") {
+      // Free tier: aggregates only. Omit recentBurns, signal upgrade path.
+      delete data.recentBurns;
+      data._tier = "free";
+      data._upgrade = {
+        method: "x-pass-holder",
+        hint: "Send `x-pass-holder: <your_wallet>` holding ≥1 AXIOM Tool Pass for full history.",
+        x402: ENDPOINT,
+      };
+      // Return the 402 with accepts list so x402-aware agents know the price
+      // and can initiate a payment flow — but still include aggregates for
+      // agents that want a quick peek before paying.
+      res.setHeader("x-payment-required", "true");
+      res.setHeader("x-accept-payment-endpoint", ENDPOINT);
+      res.setHeader("Cache-Control", "public, max-age=30, s-maxage=30");
+      return res.status(200).json(data);
+    }
+
+    // Premium / payment tier: full data
+    data._tier = tier;
     res.setHeader("Cache-Control", "public, max-age=30, s-maxage=30");
-    res.status(200).json(_cache);
+    res.status(200).json(data);
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
