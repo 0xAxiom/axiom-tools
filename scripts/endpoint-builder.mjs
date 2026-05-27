@@ -256,7 +256,7 @@ All paid endpoints live under \`/api/<slug>\` in ONE Vercel project. The deploya
    - All responses JSON. Errors → \`res.status(5xx).json({ error })\`.
 2. \`${toolDir}/index.mjs\` — pure data-gathering logic (no HTTP). Importable from the api handler. CLI-runnable with \`node tools/${seed.slug}/index.mjs [--pretty]\` for local testing.
 3. \`${toolDir}/README.md\` — what the endpoint does, sample curl, pass-bypass usage.
-4. \`${resolve(REPO_ROOT, ".well-known/ai-tool")}/${seed.slug}.json\` — ERC-8257 manifest. REQUIRED FIELDS: \`$schema\`, \`name\`, \`version\`, \`description\`, \`url\` (= \`https://axiom-tools.vercel.app/api/${seed.slug}\`), \`pricing\` (type: x402 with passBypass.contract = \`${seeds.pass_contract}\`), \`authentication\`, \`inputSchema\`, \`outputSchema\`, \`examples\`, \`contact\`, \`tags\`, \`updatedAt\`. Mirror the burn-stats manifest shape exactly.
+4. \`${resolve(REPO_ROOT, ".well-known/ai-tool")}/${seed.slug}.json\` — ERC-8257 manifest. REQUIRED FIELDS: \`$schema\`, \`name\`, \`version\`, \`description\`, \`url\` (= \`https://axiom-tools-hazel.vercel.app/api/${seed.slug}\`), \`pricing\` (type: x402 with passBypass.contract = \`${seeds.pass_contract}\`), \`authentication\`, \`inputSchema\`, \`outputSchema\`, \`examples\`, \`contact\`, \`tags\`, \`updatedAt\`. Mirror the burn-stats manifest shape exactly.
 5. \`${toolDir}/snapshot.json\` + \`${toolDir}/refresh-*.mjs\` (OPTIONAL) — only if the data source is too slow for request-time. See narrative-pulse for the pattern.
 
 # Payment / pass-bypass model

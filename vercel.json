@@ -1,9 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
-  "functions": {
-    "api/**/*.mjs": { "runtime": "@vercel/node@5.x" }
-  },
   "rewrites": [
     { "source": "/.well-known/ai-tool/:slug.json", "destination": "/api/manifest?slug=:slug" },
     { "source": "/",                                "destination": "/api/index" }
