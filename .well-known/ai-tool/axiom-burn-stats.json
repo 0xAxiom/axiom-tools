@@ -1,0 +1,102 @@
+{
+  "$schema": "https://erc-8257.org/schema/v0.1.json",
+  "name": "axiom-burn-stats",
+  "version": "1.0.0",
+  "description": "Returns total $AXIOM burned, burn event count (from Transfer-to-DEAD logs), and the 5 most recent burn transactions — all sourced live from Base mainnet via Blockscout and a direct RPC balanceOf call.",
+  "url": "https://axiom-tools.vercel.app/api/axiom-burn-stats",
+  "pricing": {
+    "type": "free"
+  },
+  "authentication": {
+    "type": "none"
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false,
+    "description": "No input required. Returns live stats on every call."
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "token": {
+        "type": "string",
+        "description": "$AXIOM ERC-20 contract address on Base"
+      },
+      "deadAddress": {
+        "type": "string",
+        "description": "The burn address (0x000...dEaD)"
+      },
+      "fetchedAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "ISO 8601 timestamp of when data was fetched"
+      },
+      "burnStats": {
+        "type": "object",
+        "properties": {
+          "fromLogs": {
+            "type": "object",
+            "properties": {
+              "totalRaw": { "type": "string", "description": "Raw uint256 sum from Transfer-to-DEAD logs" },
+              "total":    { "type": "string", "description": "Human-readable AXIOM amount (18 decimals)" },
+              "eventCount": { "type": "integer", "description": "Number of burn events in log history" }
+            }
+          },
+          "fromBalanceOf": {
+            "type": "object",
+            "properties": {
+              "totalRaw": { "type": "string" },
+              "total":    { "type": "string", "description": "balanceOf(0xdEaD) — canonical, includes pre-indexing burns" }
+            }
+          },
+          "canonicalBurnedRaw": { "type": "string" },
+          "canonicalBurned":    { "type": "string", "description": "Authoritative total burned (balanceOf-based)" },
+          "percentBurned":      { "type": "string", "description": "Percentage of 100B supply burned (e.g. '3.4034%')" }
+        }
+      },
+      "recentBurns": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "txHash":          { "type": "string" },
+            "blockNumber":     { "type": "integer" },
+            "timestamp":       { "type": "string", "format": "date-time" },
+            "amount":          { "type": "string", "description": "Raw uint256" },
+            "amountFormatted": { "type": "string", "description": "Human-readable AXIOM amount" }
+          }
+        },
+        "maxItems": 5,
+        "description": "5 most recent burn transactions, newest first"
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Fetch current burn stats",
+      "request": {},
+      "response": {
+        "token": "0xf3Ce5dDAAb6C133F9875a4a46C55cf0b58111B07",
+        "deadAddress": "0x000000000000000000000000000000000000dEaD",
+        "fetchedAt": "2026-05-27T02:48:00.000Z",
+        "burnStats": {
+          "canonicalBurned": "3,403,421,037.14",
+          "percentBurned": "3.4034%",
+          "fromLogs": { "eventCount": 70 }
+        }
+      }
+    }
+  ],
+  "contact": {
+    "name": "Axiom",
+    "url": "https://clawbots.org/axiom",
+    "x": "@AxiomBot"
+  },
+  "chain": {
+    "network": "base",
+    "chainId": 8453
+  },
+  "tags": ["defi", "burn", "erc20", "base", "axiom"],
+  "updatedAt": "2026-05-27"
+}

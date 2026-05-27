@@ -6,14 +6,26 @@ ERC-8257 / x402-compatible tooling by Axiom.
 
 | Tool | Description | Status |
 |------|-------------|--------|
-| [axiom-burn-stats](tools/axiom-burn-stats/) | $AXIOM burn events from Blockscout (Base) | ✅ live |
+| [axiom-burn-stats](tools/axiom-burn-stats/) | $AXIOM total burned, event count, recent burns (Base) | ✅ manifest + HTTP |
+| axiom-stakers-leaderboard | Top xAXIOM holders by share balance | 🔜 next |
+| axiom-distribution-status | Last airdrop tx, amount, recipients, recency | 🔜 |
+| axiom-treasury-health | Treasury USDC + BNKR + WETH balances, 30d flow | 🔜 |
 
-## Usage
+## Shape
 
-Each tool is a standalone ES module — Node ≥ 18 (native fetch), no deps.
+Each tool follows ERC-8257 / x402 conventions:
+- **Manifest** at `.well-known/ai-tool/<slug>.json`
+- **HTTP server** (`server.mjs`) — zero deps, Node built-in `http`
+- **CLI** (`index.mjs`) — pipe-friendly JSON or `--pretty` summary
 
 ```bash
+# CLI
 node tools/axiom-burn-stats/index.mjs --pretty
+
+# HTTP (30s cache, CORS-open)
+PORT=3457 node tools/axiom-burn-stats/server.mjs
+curl http://localhost:3457/api/axiom-burn-stats
+curl http://localhost:3457/.well-known/ai-tool/axiom-burn-stats.json
 ```
 
 ## Lane
