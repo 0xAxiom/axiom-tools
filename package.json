@@ -1,0 +1,14 @@
+{
+  "name": "axiom-tools",
+  "version": "1.0.0",
+  "description": "Paid agent endpoints (ERC-8257) for the AXIOM ecosystem. Single Vercel project, one tool per route under /api/<slug>.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel deploy --prod --yes --archive=tgz"
+  }
+}

@@ -1,0 +1,16 @@
+# Keep the Vercel build small. Vercel only needs api/, .well-known/, tools/,
+# package.json, vercel.json. Everything else is dev-time / cron-side.
+node_modules
+.git
+.github
+docs
+scripts
+state
+foundry
+contracts
+out
+cache
+broadcast
+*.log
+.DS_Store
+README.md

@@ -159,11 +159,11 @@ async function main() {
   }
 
   // 2. Verify Claude produced something usable.
-  const expectedEntry = resolve(toolDir, "server.mjs");
+  const expectedHandler = resolve(REPO_ROOT, "api", `${slug}.mjs`);
   const expectedManifest = resolve(REPO_ROOT, ".well-known/ai-tool", `${slug}.json`);
-  if (!claudeOk || !existsSync(expectedEntry) || !existsSync(expectedManifest)) {
+  if (!claudeOk || !existsSync(expectedHandler) || !existsSync(expectedManifest)) {
     next.status = "failed";
-    next.last_error = claudeErr || `missing ${!existsSync(expectedEntry) ? "server.mjs" : "manifest"}`;
+    next.last_error = claudeErr || `missing ${!existsSync(expectedHandler) ? `api/${slug}.mjs` : "manifest"}`;
     next.failed_at = new Date().toISOString();
     saveSeeds(seeds);
     logEvent({ kind: "fail", slug, stage: "build", error: next.last_error });
@@ -173,7 +173,7 @@ async function main() {
 
   // 3. Commit + push.
   try {
-    sh(`git add tools/${slug} .well-known/ai-tool/${slug}.json scripts/endpoint-seeds.json`);
+    sh(`git add tools/${slug} api/${slug}.mjs .well-known/ai-tool/${slug}.json scripts/endpoint-seeds.json`);
     sh(`git -c user.name="Axiom Bot" -c user.email="axiom@clawbots.org" commit -m "ship ${slug}: ${next.title} (pass-gated x402 endpoint)"`);
     sh("git push origin main");
   } catch (e) {
@@ -185,14 +185,14 @@ async function main() {
     return;
   }
 
-  // 4. Deploy to Vercel. Each tool is its own Vercel project. First-time
-  //    deploy creates the project; subsequent runs would re-deploy in place.
-  //    We only run this on the initial build.
+  // 4. Deploy. Single Vercel project (axiom-tools) hosts every endpoint
+  //    under /api/<slug>; deploy from REPO_ROOT, not per-tool dir. The
+  //    project must already be `vercel link`-ed (one-time human step).
   let deployUrl = "";
   try {
     deployUrl = sh(
-      `NODE_OPTIONS=--tls-min-v1.2 vercel deploy --prod --yes --archive=tgz --name axiom-tool-${slug} --token "$VERCEL_TOKEN"`,
-      { cwd: toolDir, capture: true, env: { VERCEL_TOKEN: process.env.VERCEL_TOKEN || "" } },
+      `NODE_OPTIONS=--tls-min-v1.2 vercel deploy --prod --yes --archive=tgz --token "$VERCEL_TOKEN"`,
+      { cwd: REPO_ROOT, capture: true, env: { VERCEL_TOKEN: process.env.VERCEL_TOKEN || "" } },
     ).split("\n").reverse().find((l) => l.startsWith("https://"))?.trim() || "";
   } catch (e) {
     next.status = "failed";
@@ -245,32 +245,42 @@ This block is pulled fresh from \`~/clawd/ideabank.md\` — the live signal feed
 
 ${signalBlock}
 
-# Required structure
+# Required structure — single Vercel project (axiom-tools)
 
-Create exactly these files. Mirror the burn-stats + narrative-pulse pattern — zero external deps unless absolutely needed, plain Node \`http\` server, snapshot/cache model where appropriate.
+All paid endpoints live under \`/api/<slug>\` in ONE Vercel project. The deployable shape is:
 
-1. \`${toolDir}/server.mjs\` — zero-dep Node HTTP server using \`node:http\`. Routes:
-   - \`GET /api/${seed.slug}\` — the data (or 402 envelope for non-pass non-paid callers)
-   - \`GET /.well-known/ai-tool/${seed.slug}.json\` — reads + returns the manifest
-   - \`GET /health\` — \`{ "status": "ok", "tool": "${seed.slug}" }\`
-   - Defaults: \`PORT=\${process.env.PORT ?? 3460}\`, CORS headers on every response.
-2. \`${toolDir}/index.mjs\` (optional) — the core data-gathering logic, importable + CLI-runnable with \`--pretty\`.
-3. \`${toolDir}/README.md\` — what the endpoint does, sample curl, how the pass-bypass works.
-4. \`${resolve(REPO_ROOT, ".well-known/ai-tool")}/${seed.slug}.json\` — ERC-8257 manifest. REQUIRED FIELDS: \`$schema\`, \`name\`, \`version\`, \`description\`, \`url\`, \`pricing\` (type: x402 with passBypass.contract = \`${seeds.pass_contract}\`), \`authentication\`, \`inputSchema\`, \`outputSchema\`, \`examples\`, \`contact\`, \`tags\`, \`updatedAt\`. Mirror the burn-stats manifest shape exactly.
+1. \`${resolve(REPO_ROOT, "api")}/${seed.slug}.mjs\` — Vercel function (\`export default async function handler(req, res)\`). MUST:
+   - Import \`checkAccess\` from \`./_lib/gate.mjs\` and call it FIRST. If \`!gate.allowed\`, \`res.status(402).json(gate.envelope)\` and return.
+   - Otherwise serve the data per the spec above.
+   - Cache where sensible (set \`Cache-Control: public, max-age=N, s-maxage=N\`).
+   - All responses JSON. Errors → \`res.status(5xx).json({ error })\`.
+2. \`${toolDir}/index.mjs\` — pure data-gathering logic (no HTTP). Importable from the api handler. CLI-runnable with \`node tools/${seed.slug}/index.mjs [--pretty]\` for local testing.
+3. \`${toolDir}/README.md\` — what the endpoint does, sample curl, pass-bypass usage.
+4. \`${resolve(REPO_ROOT, ".well-known/ai-tool")}/${seed.slug}.json\` — ERC-8257 manifest. REQUIRED FIELDS: \`$schema\`, \`name\`, \`version\`, \`description\`, \`url\` (= \`https://axiom-tools.vercel.app/api/${seed.slug}\`), \`pricing\` (type: x402 with passBypass.contract = \`${seeds.pass_contract}\`), \`authentication\`, \`inputSchema\`, \`outputSchema\`, \`examples\`, \`contact\`, \`tags\`, \`updatedAt\`. Mirror the burn-stats manifest shape exactly.
+5. \`${toolDir}/snapshot.json\` + \`${toolDir}/refresh-*.mjs\` (OPTIONAL) — only if the data source is too slow for request-time. See narrative-pulse for the pattern.
 
 # Payment / pass-bypass model
 
-x402 envelope on cache-miss + non-pass:
-- HTTP 402 body: \`{ "x402Version": 1, "accepts": [{ "scheme": "exact", "network": "base", "maxAmountRequired": "${seeds.price_default_usdc}", "resource": "<this endpoint URL>", "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" }] }\`
-- Pass bypass: caller sends \`x-pass-holder: <wallet>\`. Server does onchain \`balanceOf(wallet)\` on Tool Pass contract \`${seeds.pass_contract}\` (Base, via \`BASE_RPC_URL\` env; default \`https://mainnet.base.org\`). If balance ≥ 1, serve free.
-- Paid: caller sends \`x-payment: <verified envelope>\`. Trust the verifier upstream, serve.
+The shared gate at \`api/_lib/gate.mjs\` handles all of this. Your handler just needs to:
+
+\`\`\`js
+import { checkAccess } from "./_lib/gate.mjs";
+export default async function handler(req, res) {
+  const gate = await checkAccess(req, { price: "${seeds.price_default_usdc}" });
+  if (!gate.allowed) return res.status(402).json(gate.envelope);
+  // ... serve data ...
+}
+\`\`\`
+
+If your endpoint is the free tier (rare), skip the gate entirely.
 
 # Hard rules
 
-- Mirror burn-stats + narrative-pulse: zero npm deps unless the spec truly requires one. No Next.js, no \`api/route.ts\`, no Vercel functions style — this is a plain \`node server.mjs\` process.
-- Do not modify any file outside \`${toolDir}\` and the single manifest file at \`${resolve(REPO_ROOT, ".well-known/ai-tool")}/${seed.slug}.json\`.
-- Do not run \`npm install\`, \`git\`, \`vercel\`, or any deploy command.
-- Smoke-test the server before finishing: run it on a temporary port, curl all three routes, kill it.
+- Mirror axiom-burn-stats + axiom-narrative-pulse exactly. Read \`api/axiom-burn-stats.mjs\` and \`api/axiom-narrative-pulse.mjs\` first to learn the shape.
+- Zero external npm deps unless the spec truly requires one. Use the existing zero-dep RPC pattern (raw \`fetch\` + JSON-RPC POST) for onchain reads.
+- Do not modify ANY file outside \`${toolDir}\`, the api handler at \`api/${seed.slug}.mjs\`, and the manifest at \`.well-known/ai-tool/${seed.slug}.json\`.
+- Do not run \`npm install\`, \`git\`, \`vercel\`, or any deploy command. The cron handles deploy.
+- Smoke-test locally: \`node tools/${seed.slug}/index.mjs --pretty\` should print real data. Do NOT skip this — failed smoke = failed build.
 - No try/catch swallowing errors — let real failure modes surface as 4xx/5xx.
 
 When done, do nothing else. Do not summarize. Do not explain.`;
