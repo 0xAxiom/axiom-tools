@@ -7,3 +7,10 @@ node_modules/
 .next/
 launchd-*.log
 
+# Foundry build artifacts + installed deps (forge install fetches them)
+**/lib/forge-std/
+**/lib/openzeppelin-contracts/
+**/cache/
+**/out/
+**/broadcast/
+
