@@ -167,17 +167,17 @@ function sigilSvg(variant, rot, cx, cy, r, ink, accent, starPoints) {
   `;
 }
 
-// Light grain — scatter of small dots over the paper.
-function grain(rng, w, h, color) {
-  let dots = "";
-  const n = 220;
-  for (let i = 0; i < n; i++) {
-    const x = rng() * w;
-    const y = rng() * h;
-    const r = rng() < 0.92 ? 0.4 : 0.8;
-    dots += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${color}" opacity="0.35"/>`;
+// Light grain — RNG advance only (no visual output). On-chain renderer omits
+// grain dots for gas reasons, so we drop them here too to keep previews and
+// chain output 1:1. The RNG state must still advance by 220*3 rolls so the
+// downstream watermark angle picks the same value the chain does.
+function grain(rng /*, w, h, color */) {
+  for (let i = 0; i < 220; i++) {
+    rng(); // x
+    rng(); // y
+    rng(); // size
   }
-  return dots;
+  return "";
 }
 
 // Generative watermark band — diagonal stripes behind the main text, very faint.
