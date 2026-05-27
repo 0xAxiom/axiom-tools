@@ -7,6 +7,11 @@ node_modules/
 .next/
 launchd-*.log
 
+# endpoint-builder runtime state (rotates; reconstructable from seeds.json)
+state/endpoint-builder-log.jsonl
+state/endpoint-builder.stdout.log
+state/endpoint-builder.stderr.log
+
 # Foundry build artifacts + installed deps (forge install fetches them)
 **/lib/forge-std/
 **/lib/openzeppelin-contracts/
