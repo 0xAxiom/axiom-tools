@@ -3,7 +3,7 @@
   "name": "axiom-burn-stats",
   "version": "1.0.0",
   "description": "Returns total $AXIOM burned, burn event count (from Transfer-to-DEAD logs), and the 5 most recent burn transactions — all sourced live from Base mainnet via Blockscout and a direct RPC balanceOf call.",
-  "url": "https://axiom-tools.vercel.app/api/axiom-burn-stats",
+  "url": "https://axiom-tools-hazel.vercel.app/api/axiom-burn-stats",
   "pricing": {
     "type": "free"
   },

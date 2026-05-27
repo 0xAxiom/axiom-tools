@@ -2,7 +2,7 @@
 
 Paid agent endpoints for the AXIOM ecosystem. Single Vercel project, every tool mounted under `/api/<slug>`. ERC-8257 manifests at `/.well-known/ai-tool/<slug>.json`. Pass-bypass via the AXIOM Tool Pass; otherwise x402 USDC-on-Base.
 
-**Live:** `https://axiom-tools.vercel.app`
+**Live:** `https://axiom-tools-hazel.vercel.app`
 
 ## Endpoints
 
@@ -46,14 +46,14 @@ The 3 queued endpoints will ship via the [`endpoint-builder` cron](scripts/endpo
 
 ```bash
 # Free if your wallet holds 1+ AXIOM Tool Pass NFT:
-curl -H "x-pass-holder: 0xYourWallet" https://axiom-tools.vercel.app/api/axiom-narrative-pulse
+curl -H "x-pass-holder: 0xYourWallet" https://axiom-tools-hazel.vercel.app/api/axiom-narrative-pulse
 
 # Otherwise x402 paywall:
-curl https://axiom-tools.vercel.app/api/axiom-narrative-pulse
+curl https://axiom-tools-hazel.vercel.app/api/axiom-narrative-pulse
 # → 402 + x402 envelope with USDC payment details
 ```
 
-Mint a Tool Pass: [https://axiom-tools.vercel.app/pass](https://axiom-tools.vercel.app/pass) (1000 supply, 0.005 ETH, 10/wallet — `0xfc9ce3990f85fA1A3a0eE51a710642396a6Cad82` on Base).
+Mint a Tool Pass: [https://axiom-tools-hazel.vercel.app/pass](https://axiom-tools-hazel.vercel.app/pass) (1000 supply, 0.005 ETH, 10/wallet — `0xfc9ce3990f85fA1A3a0eE51a710642396a6Cad82` on Base).
 
 ## Lane
 

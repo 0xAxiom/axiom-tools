@@ -3,7 +3,7 @@
   "name": "axiom-narrative-pulse",
   "version": "1.0.0",
   "description": "Live crypto/AI narrative map: each tracked narrative gets a phase (Emerging/Rising/Peak/Fading), velocity arrow, named drivers (@handles, not 'people are saying'), and an explicit position call (FRONT-RUN/RIDE/FADE/WATCH/IGNORE). Refreshed daily from CT signal + onchain flow. Same engine as the aeon-narrative-tracker skill, exposed as a paid endpoint.",
-  "url": "https://axiom-tools.vercel.app/api/axiom-narrative-pulse",
+  "url": "https://axiom-tools-hazel.vercel.app/api/axiom-narrative-pulse",
   "pricing": {
     "type": "x402",
     "amount": "0.01",
