@@ -1,69 +1,66 @@
 {
-  "version": 1,
-  "description": "Seed list of OpenSea-/agent-adjacent paid endpoints. The endpoint-builder cron picks the first 'pending' entry each fire, builds it, deploys it, and flips its status to 'built'. Status flows: pending → building → built (or failed, with last_error).",
+  "version": 2,
+  "description": "Approved endpoint queue for axiom-tools. The endpoint-builder cron picks the highest-priority 'pending' entry each fire (after consulting ideabank.md), builds it, deploys it, and flips status to 'built' (or 'failed' with last_error). Status flow: pending → building → built / failed / skipped.",
   "pass_contract": "0xfc9ce3990f85fA1A3a0eE51a710642396a6Cad82",
   "registry_contract": "0x265BB2DBFC0A8165C9A1941Eb1372F349baD2cf1",
   "price_default_usdc": "0.01",
+  "lineup_notes": "Bar: must require proprietary synthesis I'm uniquely positioned to do. No Dune-query-in-a-trench-coat wrappers (Melted 2026-05-26).",
   "endpoints": [
     {
-      "slug": "collection-stats",
-      "title": "OpenSea collection stats",
-      "spec": "Given a collection slug, return floor price, total volume, holder count, total supply, num listed. Source: OpenSea API v2 GET /api/v2/collections/{slug}/stats. Cache 60s. Pass-holders bypass the x402 fee.",
-      "status": "pending"
+      "slug": "axiom-burn-stats",
+      "title": "Live $AXIOM burn stats",
+      "spec": "Total burned (balanceOf 0xdEaD + Transfer-to-DEAD log sum), event count, % of 100B supply burned, 5 most recent burns. Source: Blockscout getLogs + Base RPC. 30s cache.",
+      "status": "built",
+      "price": "free",
+      "rationale": "Demo tier — shows the rails work. Free so callers can verify ERC-8257 manifest fetch + endpoint shape before paying for the real ones.",
+      "built_at": "2026-05-27T02:00:00.000Z"
     },
     {
-      "slug": "sweep-quote",
-      "title": "Bulk-buy sweep quote",
-      "spec": "Given a collection slug and a target ETH spend, return a list of token IDs whose summed floor prices fit the budget, ordered cheapest-first, plus the exact total and the avg per-token cost. Source: OpenSea listings API. Pass-holders bypass.",
-      "status": "pending"
+      "slug": "axiom-narrative-pulse",
+      "title": "Live crypto/AI narrative map",
+      "spec": "Daily-refreshed narrative snapshot: phase (Emerging/Rising/Peak/Fading), velocity arrow, named drivers, position call (FRONT-RUN/RIDE/FADE/WATCH/IGNORE). Filterable by narrative / phase / position. Engine: aeon-narrative-tracker skill, daily refresh via refresh-snapshot.mjs.",
+      "status": "built",
+      "rationale": "Proprietary synthesis over my Twitter API window + classification. Not pullable from a single source. Agents route trades / content priorities off the position field.",
+      "built_at": "2026-05-27T03:00:00.000Z"
     },
     {
-      "slug": "holder-snapshot",
-      "title": "Collection holder snapshot",
-      "spec": "Given a collection contract address, return the full list of unique holders + token count per holder, sorted descending. Source: Base RPC eth_getLogs Transfer events from the contract. Cap at 10k holders, paginate if larger. Pass-holders bypass.",
-      "status": "pending"
+      "slug": "axiom-influence-impact",
+      "title": "Influence-to-volume attribution",
+      "spec": "For a given $TOKEN on Base, return the CT accounts that actually move onchain volume when they post. Method: pull recent token mentions via twitter-api search, fetch hourly volume bars around each tweet timestamp, attribute the delta vs baseline. Output: ranked list of accounts with (post_count, total_volume_attributed, avg_per_post, last_seen), 7d and 30d windows.",
+      "status": "pending",
+      "priority": 1,
+      "rationale": "Nobody has this. CT influence vs onchain volume is the holy grail of agent-driven trading signal. Hard to assemble: requires Twitter API access + onchain volume joins + attribution logic over a sliding window."
     },
     {
-      "slug": "rarity-rank",
-      "title": "Token rarity rank within a collection",
-      "spec": "Given a collection slug and a tokenId, return the trait rarity score and rank within the collection. Source: OpenSea API v2 trait endpoint + a local rarity calculator (product of 1/trait_frequency). Pass-holders bypass.",
-      "status": "pending"
+      "slug": "axiom-whale-alerts",
+      "title": "Tagged whale-transfer push feed",
+      "spec": "Webhook subscription endpoint. POST { token, threshold_usd, webhook_url } to subscribe. We watch Transfer logs on Base, and when a transfer >= threshold_usd fires, POST the event to webhook_url with a cohort tag: { staker | dumper | LP-add | LP-remove | new-wallet | exchange-deposit | exchange-withdraw }. Cohort classification uses wallet history (xAXIOM holdings, prior Transfer patterns, known CEX hot wallets).",
+      "status": "pending",
+      "priority": 2,
+      "rationale": "Push instead of pull — different shape from the other 3 endpoints. Cohort tagging is the moat (anyone can watch big transfers; nobody else tags 'dumper vs LP-add' inline). Agents subscribe + react."
     },
     {
-      "slug": "mint-tracker",
-      "title": "Recent mints from a collection",
-      "spec": "Given a collection contract on Base and a since-timestamp, return all mint events (Transfer from 0x0) with tokenId, minter, txHash, and timestamp. Source: Base RPC eth_getLogs. Default since = last 24h. Pass-holders bypass.",
-      "status": "pending"
-    },
-    {
-      "slug": "traits-filter",
-      "title": "Find tokens matching trait combo",
-      "spec": "Given a collection slug and an object of trait_type→value filters, return up to 50 tokenIds + listing price + permalink that match all filters. Source: OpenSea API v2 list-NFTs with traits query param. Pass-holders bypass.",
-      "status": "pending"
-    },
-    {
-      "slug": "offer-aggregator",
-      "title": "Best offer across markets",
-      "spec": "Given a collection slug, return the highest current offer (collection-wide) and highest item-level offer. Source: OpenSea offers endpoint + Blur offers endpoint (if reachable). Pass-holders bypass.",
-      "status": "pending"
-    },
-    {
-      "slug": "royalty-info",
-      "title": "Live royalty config for a collection",
-      "spec": "Given a collection contract on Base, return the EIP-2981 royalty receiver + percentage. Source: cast call royaltyInfo(1, 10000) on the contract. Pass-holders bypass.",
-      "status": "pending"
-    },
-    {
-      "slug": "transfer-events",
-      "title": "Historical transfers for a token",
-      "spec": "Given a collection contract + tokenId, return the full ownership chain (from→to→txHash→timestamp) in reverse-chronological order. Source: Base RPC eth_getLogs. Pass-holders bypass.",
-      "status": "pending"
-    },
-    {
-      "slug": "listing-feed",
-      "title": "New listings feed for a collection",
-      "spec": "Given a collection slug and a since-timestamp, return the latest listings (tokenId, price, seller, expiration). Default since = last 1h. Source: OpenSea API v2 listings. Pass-holders bypass.",
-      "status": "pending"
+      "slug": "axiom-sweep-forecast",
+      "title": "NFT sweep + forward floor projection",
+      "spec": "Inputs: collection slug, ETH budget, time horizon (hours). Outputs: (a) current sweep — N tokens at avg X (walking the listing curve), (b) projected sweep at T+horizon given current listing-velocity + holder-activity, (c) confidence band, (d) the 5 tokens most likely to be relisted in the next horizon. Source: OpenSea listings + Base transfer events. The projection layer is the moat over plain sweep-quote.",
+      "status": "pending",
+      "priority": 3,
+      "rationale": "Sweep-quote already exists (free) — but the forward projection is what mass-buyers actually want. 'If I drop 100 ETH in 4h, here's the real floor impact and how N changes.'"
     }
-  ]
+  ],
+  "skipped_for_lineup_review": {
+    "reason": "Dropped 2026-05-26 — wrap-public-API pattern doesn't meet synthesis bar. Kept for reference; may reactivate select entries IF ideabank.md surfaces real demand from agents (not from us thinking they'd want it).",
+    "endpoints": [
+      "collection-stats",
+      "sweep-quote (free version)",
+      "holder-snapshot",
+      "rarity-rank",
+      "mint-tracker",
+      "traits-filter",
+      "offer-aggregator",
+      "royalty-info",
+      "transfer-events",
+      "listing-feed"
+    ]
+  }
 }

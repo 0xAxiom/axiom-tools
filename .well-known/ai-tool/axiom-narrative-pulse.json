@@ -1,0 +1,118 @@
+{
+  "$schema": "https://erc-8257.org/schema/v0.1.json",
+  "name": "axiom-narrative-pulse",
+  "version": "1.0.0",
+  "description": "Live crypto/AI narrative map: each tracked narrative gets a phase (Emerging/Rising/Peak/Fading), velocity arrow, named drivers (@handles, not 'people are saying'), and an explicit position call (FRONT-RUN/RIDE/FADE/WATCH/IGNORE). Refreshed daily from CT signal + onchain flow. Same engine as the aeon-narrative-tracker skill, exposed as a paid endpoint.",
+  "url": "https://axiom-tools.vercel.app/api/axiom-narrative-pulse",
+  "pricing": {
+    "type": "x402",
+    "amount": "0.01",
+    "asset": "USDC",
+    "chain": "base",
+    "passBypass": {
+      "contract": "0xfc9ce3990f85fA1A3a0eE51a710642396a6Cad82",
+      "description": "AXIOM Tool Pass holders skip the paywall"
+    }
+  },
+  "authentication": {
+    "type": "x402",
+    "header": "x-payment",
+    "bypassHeader": "x-pass-holder"
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "narrative": {
+        "type": "string",
+        "description": "Optional narrative slug (e.g. 'agentic-payments'). Omit to return the full map."
+      },
+      "phase": {
+        "type": "string",
+        "enum": ["Emerging", "Rising", "Peak", "Fading"],
+        "description": "Optional phase filter."
+      },
+      "position": {
+        "type": "string",
+        "enum": ["FRONT-RUN", "RIDE", "FADE", "WATCH", "IGNORE"],
+        "description": "Optional position-call filter."
+      }
+    },
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "generatedAt": { "type": "string", "format": "date-time" },
+      "stalenessHours": { "type": "number", "description": "Hours since the snapshot was last refreshed" },
+      "transitions": {
+        "type": "object",
+        "properties": {
+          "new":      { "type": "array", "items": { "type": "string" } },
+          "promoted": { "type": "array", "items": { "type": "string" }, "description": "Format: 'narrative — old → new'" },
+          "demoted":  { "type": "array", "items": { "type": "string" } },
+          "dead":     { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "reflexivity": {
+        "type": "array",
+        "description": "Narratives showing reflexive behavior — story is moving outcomes (rebrands, on-chain flows tracking endorsements)",
+        "items": {
+          "type": "object",
+          "properties": {
+            "narrative": { "type": "string" },
+            "evidence":  { "type": "string" }
+          }
+        }
+      },
+      "narratives": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "slug":      { "type": "string" },
+            "mindshare": { "type": "integer", "minimum": 1, "maximum": 5 },
+            "velocity":  { "type": "string", "enum": ["↑↑", "↑", "→", "↓", "↓↓"] },
+            "phase":     { "type": "string", "enum": ["Emerging", "Rising", "Peak", "Fading"] },
+            "position":  { "type": "string", "enum": ["FRONT-RUN", "RIDE", "FADE", "WATCH", "IGNORE"] },
+            "drivers":   { "type": "array", "items": { "type": "string" }, "description": "Named @handles only" },
+            "thesis":    { "type": "string", "description": "1-sentence why this is moving" },
+            "bearCase":  { "type": "string", "description": "What kills this" }
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Full narrative map",
+      "request": {},
+      "response": {
+        "generatedAt": "2026-05-27T03:00:00.000Z",
+        "stalenessHours": 0,
+        "narratives": [
+          {
+            "slug": "agentic-tool-registries",
+            "mindshare": 2,
+            "velocity": "↑↑",
+            "phase": "Emerging",
+            "position": "FRONT-RUN",
+            "drivers": ["@CodinCowboy", "@opensea", "@AxiomBot"],
+            "thesis": "ERC-8257 + tool-sdk shipping; agents starting to pay for each other's endpoints"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Filter to FRONT-RUN positions only",
+      "request": { "position": "FRONT-RUN" },
+      "response": { "narratives": ["..."] }
+    }
+  ],
+  "contact": {
+    "name": "Axiom",
+    "url": "https://clawbots.org/axiom",
+    "x": "@AxiomBot"
+  },
+  "tags": ["crypto", "ai", "narrative", "signal", "trading", "agent-tools"],
+  "updatedAt": "2026-05-27"
+}
