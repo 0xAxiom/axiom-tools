@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "description": "Seed list of OpenSea-/agent-adjacent paid endpoints. The endpoint-builder cron picks the first 'pending' entry each fire, builds it, deploys it, and flips its status to 'built'. Status flows: pending → building → built (or failed, with last_error).",
+  "pass_contract": "0xfc9ce3990f85fA1A3a0eE51a710642396a6Cad82",
+  "registry_contract": "0x265BB2DBFC0A8165C9A1941Eb1372F349baD2cf1",
+  "price_default_usdc": "0.01",
+  "endpoints": [
+    {
+      "slug": "collection-stats",
+      "title": "OpenSea collection stats",
+      "spec": "Given a collection slug, return floor price, total volume, holder count, total supply, num listed. Source: OpenSea API v2 GET /api/v2/collections/{slug}/stats. Cache 60s. Pass-holders bypass the x402 fee.",
+      "status": "pending"
+    },
+    {
+      "slug": "sweep-quote",
+      "title": "Bulk-buy sweep quote",
+      "spec": "Given a collection slug and a target ETH spend, return a list of token IDs whose summed floor prices fit the budget, ordered cheapest-first, plus the exact total and the avg per-token cost. Source: OpenSea listings API. Pass-holders bypass.",
+      "status": "pending"
+    },
+    {
+      "slug": "holder-snapshot",
+      "title": "Collection holder snapshot",
+      "spec": "Given a collection contract address, return the full list of unique holders + token count per holder, sorted descending. Source: Base RPC eth_getLogs Transfer events from the contract. Cap at 10k holders, paginate if larger. Pass-holders bypass.",
+      "status": "pending"
+    },
+    {
+      "slug": "rarity-rank",
+      "title": "Token rarity rank within a collection",
+      "spec": "Given a collection slug and a tokenId, return the trait rarity score and rank within the collection. Source: OpenSea API v2 trait endpoint + a local rarity calculator (product of 1/trait_frequency). Pass-holders bypass.",
+      "status": "pending"
+    },
+    {
+      "slug": "mint-tracker",
+      "title": "Recent mints from a collection",
+      "spec": "Given a collection contract on Base and a since-timestamp, return all mint events (Transfer from 0x0) with tokenId, minter, txHash, and timestamp. Source: Base RPC eth_getLogs. Default since = last 24h. Pass-holders bypass.",
+      "status": "pending"
+    },
+    {
+      "slug": "traits-filter",
+      "title": "Find tokens matching trait combo",
+      "spec": "Given a collection slug and an object of trait_type→value filters, return up to 50 tokenIds + listing price + permalink that match all filters. Source: OpenSea API v2 list-NFTs with traits query param. Pass-holders bypass.",
+      "status": "pending"
+    },
+    {
+      "slug": "offer-aggregator",
+      "title": "Best offer across markets",
+      "spec": "Given a collection slug, return the highest current offer (collection-wide) and highest item-level offer. Source: OpenSea offers endpoint + Blur offers endpoint (if reachable). Pass-holders bypass.",
+      "status": "pending"
+    },
+    {
+      "slug": "royalty-info",
+      "title": "Live royalty config for a collection",
+      "spec": "Given a collection contract on Base, return the EIP-2981 royalty receiver + percentage. Source: cast call royaltyInfo(1, 10000) on the contract. Pass-holders bypass.",
+      "status": "pending"
+    },
+    {
+      "slug": "transfer-events",
+      "title": "Historical transfers for a token",
+      "spec": "Given a collection contract + tokenId, return the full ownership chain (from→to→txHash→timestamp) in reverse-chronological order. Source: Base RPC eth_getLogs. Pass-holders bypass.",
+      "status": "pending"
+    },
+    {
+      "slug": "listing-feed",
+      "title": "New listings feed for a collection",
+      "spec": "Given a collection slug and a since-timestamp, return the latest listings (tokenId, price, seller, expiration). Default since = last 1h. Source: OpenSea API v2 listings. Pass-holders bypass.",
+      "status": "pending"
+    }
+  ]
+}
