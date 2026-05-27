@@ -1,32 +1,59 @@
 # axiom-tools
 
-ERC-8257 / x402-compatible tooling by Axiom.
+Paid agent endpoints for the AXIOM ecosystem. Single Vercel project, every tool mounted under `/api/<slug>`. ERC-8257 manifests at `/.well-known/ai-tool/<slug>.json`. Pass-bypass via the AXIOM Tool Pass; otherwise x402 USDC-on-Base.
 
-## Tools
+**Live:** `https://axiom-tools.vercel.app`
 
-| Tool | Description | Status |
-|------|-------------|--------|
-| [axiom-burn-stats](tools/axiom-burn-stats/) | $AXIOM total burned, event count, recent burns (Base) | ✅ manifest + HTTP |
-| axiom-stakers-leaderboard | Top xAXIOM holders by share balance | 🔜 next |
-| axiom-distribution-status | Last airdrop tx, amount, recipients, recency | 🔜 |
-| axiom-treasury-health | Treasury USDC + BNKR + WETH balances, 30d flow | 🔜 |
+## Endpoints
 
-## Shape
+| Tool | Description | Tier |
+|------|-------------|------|
+| [axiom-burn-stats](tools/axiom-burn-stats/) | Live $AXIOM burn stats: canonical burned, event count, recent burns | Free (demo) |
+| [axiom-narrative-pulse](tools/axiom-narrative-pulse/) | Crypto/AI narrative map: phase, velocity, drivers, position calls | x402 $0.01 |
+| axiom-influence-impact | CT-account → onchain-volume attribution per token | 🔜 queued |
+| axiom-whale-alerts | Webhook push feed for large transfers with cohort tagging | 🔜 queued |
+| axiom-sweep-forecast | NFT sweep-quote + forward floor projection | 🔜 queued |
 
-Each tool follows ERC-8257 / x402 conventions:
-- **Manifest** at `.well-known/ai-tool/<slug>.json`
-- **HTTP server** (`server.mjs`) — zero deps, Node built-in `http`
-- **CLI** (`index.mjs`) — pipe-friendly JSON or `--pretty` summary
+The 3 queued endpoints will ship via the [`endpoint-builder` cron](scripts/endpoint-builder.mjs), which consults `~/clawd/ideabank.md` for demand signals before each pick and orders the queue by priority.
+
+## Architecture
+
+```
+                                  ┌──────────────────────────┐
+   GET /api/<slug>      ────────▶ │ api/<slug>.mjs           │
+                                  │   import gate            │
+                                  │   import data logic      │
+                                  │   serve or 402           │
+   GET /.well-known/   ────────▶  │ api/manifest.mjs         │
+       ai-tool/<slug>.json        │   (rewritten by vercel)  │
+                                  └────────────┬─────────────┘
+                                               │
+                                               ▼
+                                  ┌──────────────────────────┐
+                                  │ tools/<slug>/index.mjs   │ ← pure data logic
+                                  │ tools/<slug>/snapshot.*  │ ← snapshot model (optional)
+                                  │ .well-known/ai-tool/...  │ ← manifest source
+                                  └──────────────────────────┘
+```
+
+- **One Vercel project**, deployed from the repo root.
+- **`api/_lib/gate.mjs`** is the shared access gate — every paid handler calls `checkAccess(req)` first and either gets `{ allowed: true }` or an x402 envelope to return.
+- **Pass bypass:** caller sends `x-pass-holder: <wallet>`; the gate does a zero-dep `balanceOf` RPC call against the [AXIOM Tool Pass](https://basescan.org/address/0xfc9ce3990f85fA1A3a0eE51a710642396a6Cad82) on Base. Balance ≥ 1 → free.
+- **x402 paid:** caller sends a verified `x-payment` envelope; the gate trusts it (the verifier sits upstream).
+- **Local dev:** `vercel dev` from repo root; or run `node tools/<slug>/server.mjs` for the standalone version of any tool with one.
+
+## Bypass via Tool Pass
 
 ```bash
-# CLI
-node tools/axiom-burn-stats/index.mjs --pretty
+# Free if your wallet holds 1+ AXIOM Tool Pass NFT:
+curl -H "x-pass-holder: 0xYourWallet" https://axiom-tools.vercel.app/api/axiom-narrative-pulse
 
-# HTTP (30s cache, CORS-open)
-PORT=3457 node tools/axiom-burn-stats/server.mjs
-curl http://localhost:3457/api/axiom-burn-stats
-curl http://localhost:3457/.well-known/ai-tool/axiom-burn-stats.json
+# Otherwise x402 paywall:
+curl https://axiom-tools.vercel.app/api/axiom-narrative-pulse
+# → 402 + x402 envelope with USDC payment details
 ```
+
+Mint a Tool Pass: [https://axiom-tools.vercel.app/pass](https://axiom-tools.vercel.app/pass) (1000 supply, 0.005 ETH, 10/wallet — `0xfc9ce3990f85fA1A3a0eE51a710642396a6Cad82` on Base).
 
 ## Lane
 
@@ -34,4 +61,3 @@ Active build lane (2026-05-26). Sibling repos:
 - `~/Github/0xAxiom/soulforge/` — Soulforge runtime
 - `~/Github/0xAxiom/normies-tools/` — Normies tooling
 - `~/Github/0xAxiom/opensea-tools/` — OpenSea / NFT-flavored tooling (separate API, separate audience)
-
