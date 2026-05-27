@@ -1,0 +1,110 @@
+{
+  "$schema": "https://erc-8257.org/schema/v0.1.json",
+  "name": "axiom-influence-impact",
+  "version": "1.0.0",
+  "description": "For a given Base-listed token, returns the CT accounts whose posts correlate with the largest onchain volume spikes — ranked by USD volume attributed per post over a 7-day window. Method: pairs Twitter cashtag/keyword search results with hourly DEX volume bars from GeckoTerminal, computes (post-window volume - 2x baseline) per tweet, aggregates per author. Surfaces signal-vs-noise: who actually moves the chart vs who is just loud.",
+  "url": "https://axiom-tools-hazel.vercel.app/api/axiom-influence-impact",
+  "pricing": {
+    "type": "x402",
+    "amount": "0.01",
+    "asset": "USDC",
+    "chain": "base",
+    "passBypass": {
+      "contract": "0xfc9ce3990f85fA1A3a0eE51a710642396a6Cad82",
+      "description": "AXIOM Tool Pass holders skip the paywall"
+    }
+  },
+  "authentication": {
+    "type": "x402",
+    "header": "x-payment",
+    "bypassHeader": "x-pass-holder"
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "token": {
+        "type": "string",
+        "description": "Optional. Ticker symbol from the watched list (e.g. 'AXIOM'). Omit to return all watched tokens."
+      }
+    },
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "generatedAt":     { "type": "string", "format": "date-time" },
+      "stalenessHours":  { "type": "number" },
+      "token":           { "type": "string" },
+      "contract":        { "type": "string" },
+      "pool":            { "type": "string", "description": "GeckoTerminal pool ID used for OHLCV" },
+      "window":          { "type": "string", "enum": ["7d"] },
+      "sampleSize": {
+        "type": "object",
+        "properties": {
+          "tweets": { "type": "integer" },
+          "bars":   { "type": "integer" }
+        }
+      },
+      "baseline_hourly_usd": {
+        "type": "number",
+        "description": "Median hourly USD volume for the pool over the window. Used as the per-bar 'expected' volume."
+      },
+      "leaderboard": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "author":               { "type": "string" },
+            "posts":                { "type": "integer" },
+            "total_attributed_usd": { "type": "number" },
+            "avg_per_post":         { "type": "number" },
+            "last_seen":            { "type": "string", "format": "date-time" },
+            "sample_tweet_url":     { "type": "string", "format": "uri" }
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Full snapshot (all watched tokens)",
+      "request": {},
+      "response": {
+        "generatedAt": "2026-05-27T03:36:00.000Z",
+        "tokens": {
+          "AXIOM": { "leaderboard": ["..."] }
+        }
+      }
+    },
+    {
+      "description": "Single token",
+      "request": { "token": "AXIOM" },
+      "response": {
+        "token": "AXIOM",
+        "baseline_hourly_usd": 225.91,
+        "leaderboard": [
+          {
+            "author": "Sam_2S4",
+            "posts": 4,
+            "total_attributed_usd": 16753.01,
+            "avg_per_post": 4188.25,
+            "last_seen": "2026-05-20T20:42:19.000Z",
+            "sample_tweet_url": "https://x.com/Sam_2S4/status/2057200267100029024"
+          }
+        ]
+      }
+    }
+  ],
+  "caveats": [
+    "Attribution is correlational, not causal — this ranks 'who posted close to volume spikes,' not 'who caused them.' Consistent over-attribution across samples is itself signal.",
+    "7-day window only. 30d requires Twitter Pro tier; not currently available.",
+    "Watched-token list lives in known-tokens.json — request an addition by opening an issue."
+  ],
+  "contact": {
+    "name": "Axiom",
+    "url": "https://clawbots.org/axiom",
+    "x": "@AxiomBot"
+  },
+  "tags": ["crypto", "twitter", "attribution", "influence", "base", "signal"],
+  "updatedAt": "2026-05-27"
+}

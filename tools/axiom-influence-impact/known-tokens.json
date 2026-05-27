@@ -1,0 +1,35 @@
+{
+  "description": "Watched-token registry for axiom-influence-impact. Each entry maps a ticker to its Base contract + GeckoTerminal pool ID (the deepest-liquidity pool — for v4 single-tick concentrated liquidity, use the canonical pool keyed by the full poolKey). Refresh-snapshot iterates this list daily. Adding a token here makes it queryable via /api/axiom-influence-impact?token=<SYMBOL>.",
+  "tokens": {
+    "AXIOM": {
+      "symbol": "AXIOM",
+      "contract": "0xf3Ce5dDAAb6C133F9875a4a46C55cf0b58111B07",
+      "geckoterminalPool": "0x10a0b8eba9d4e0f772c8c47968ee819bb4609ef4454409157961570cdce9a735",
+      "searchTerms": ["$AXIOM", "AxiomBot", "AXIOM token"]
+    },
+    "GITLAWB": {
+      "symbol": "GITLAWB",
+      "contract": "0x5f980dcfc4c0fa3911554cf5ab288ed0eb13dba3",
+      "geckoterminalPool": "0xec33256bf1ded407a57fd3c1965e7556e42ac14db09bc4e6fef57d5e2eb0b0b9",
+      "searchTerms": ["$GITLAWB", "gitlawb"]
+    },
+    "AEON": {
+      "symbol": "AEON",
+      "contract": "0xbf8e8f0e8866a7052f948c16508644347c57aba3",
+      "geckoterminalPool": "0x4a9b9e13975d26f4e3e17c655593bb82145dd4452aedafb826d856b817c9cfd4",
+      "searchTerms": ["$AEON", "aeonframework"]
+    },
+    "SURPLUS": {
+      "symbol": "SURPLUS",
+      "contract": "0xc52aedec3374422d7510e294cfaa90799595cba3",
+      "geckoterminalPool": "0xfc25fdd217e288d03a877f0b7d49e0bbe52b2288c88de929125062569fc7eb2a",
+      "searchTerms": ["$SURPLUS"]
+    },
+    "SUPERGEMMA": {
+      "symbol": "SUPERGEMMA",
+      "contract": "0x572c4fa77623652411574c51b5ddb7e1b750aba3",
+      "geckoterminalPool": "0x7016371c9642e346094b51b9603e429828d3f8063537770020115af81b019145",
+      "searchTerms": ["$SUPERGEMMA"]
+    }
+  }
+}

@@ -26,10 +26,11 @@
     {
       "slug": "axiom-influence-impact",
       "title": "Influence-to-volume attribution",
-      "spec": "For a given $TOKEN on Base, return the CT accounts that actually move onchain volume when they post. Method: pull recent token mentions via twitter-api search, fetch hourly volume bars around each tweet timestamp, attribute the delta vs baseline. Output: ranked list of accounts with (post_count, total_volume_attributed, avg_per_post, last_seen), 7d and 30d windows.",
-      "status": "pending",
+      "spec": "For a given $TOKEN on Base, return the CT accounts that actually move onchain volume when they post. Method: pull recent token mentions via twitter-api search, fetch hourly volume bars around each tweet timestamp, attribute the delta vs baseline. Output: ranked list of accounts with (post_count, total_volume_attributed, avg_per_post, last_seen), 7d window.",
+      "status": "built",
       "priority": 1,
-      "rationale": "Nobody has this. CT influence vs onchain volume is the holy grail of agent-driven trading signal. Hard to assemble: requires Twitter API access + onchain volume joins + attribution logic over a sliding window."
+      "rationale": "Nobody has this. CT influence vs onchain volume is the holy grail of agent-driven trading signal. Hard to assemble: requires Twitter API access + onchain volume joins + attribution logic over a sliding window.",
+      "built_at": "2026-05-27T03:45:00.000Z"
     },
     {
       "slug": "axiom-whale-alerts",

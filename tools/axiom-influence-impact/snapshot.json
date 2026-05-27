@@ -1,0 +1,2077 @@
+{
+  "generatedAt": "2026-05-27T03:39:27.861Z",
+  "window": "7d",
+  "description": "Per-token influence-to-volume attribution. See README for methodology.",
+  "tokens": {
+    "AXIOM": {
+      "token": "AXIOM",
+      "contract": "0xf3Ce5dDAAb6C133F9875a4a46C55cf0b58111B07",
+      "pool": "0x10a0b8eba9d4e0f772c8c47968ee819bb4609ef4454409157961570cdce9a735",
+      "window": "7d",
+      "computedAt": "2026-05-27T03:39:29.801Z",
+      "sampleSize": {
+        "tweets": 252,
+        "bars": 168
+      },
+      "baseline_hourly_usd": 225.91,
+      "leaderboard": [
+        {
+          "author": "Sam_2S4",
+          "posts": 4,
+          "total_attributed_usd": 16753.01,
+          "last_seen": "2026-05-20T20:42:19.000Z",
+          "sample_tweet_url": "https://x.com/Sam_2S4/status/2057200267100029024",
+          "avg_per_post": 4188.25
+        },
+        {
+          "author": "AxiomBot",
+          "posts": 5,
+          "total_attributed_usd": 13795.58,
+          "last_seen": "2026-05-27T02:42:17.000Z",
+          "sample_tweet_url": "https://x.com/AxiomBot/status/2059465183580532757",
+          "avg_per_post": 2759.12
+        },
+        {
+          "author": "Virjil_xxxr",
+          "posts": 1,
+          "total_attributed_usd": 11444.75,
+          "last_seen": "2026-05-21T03:57:38.000Z",
+          "sample_tweet_url": "https://x.com/Virjil_xxxr/status/2057309817480569259",
+          "avg_per_post": 11444.75
+        },
+        {
+          "author": "Bs_bobreka",
+          "posts": 1,
+          "total_attributed_usd": 11444.75,
+          "last_seen": "2026-05-21T03:57:28.000Z",
+          "sample_tweet_url": "https://x.com/Bs_bobreka/status/2057309778431656224",
+          "avg_per_post": 11444.75
+        },
+        {
+          "author": "alexdolbun",
+          "posts": 6,
+          "total_attributed_usd": 10425.38,
+          "last_seen": "2026-05-24T11:45:54.000Z",
+          "sample_tweet_url": "https://x.com/alexdolbun/status/2058514825148235811",
+          "avg_per_post": 1737.56
+        },
+        {
+          "author": "Drchestnut6",
+          "posts": 4,
+          "total_attributed_usd": 10073.51,
+          "last_seen": "2026-05-22T23:50:24.000Z",
+          "sample_tweet_url": "https://x.com/Drchestnut6/status/2057972375317090640",
+          "avg_per_post": 2518.38
+        },
+        {
+          "author": "lead_crum",
+          "posts": 1,
+          "total_attributed_usd": 9863.47,
+          "last_seen": "2026-05-21T02:28:50.000Z",
+          "sample_tweet_url": "https://x.com/lead_crum/status/2057287469905621308",
+          "avg_per_post": 9863.47
+        },
+        {
+          "author": "MeltedMindz",
+          "posts": 8,
+          "total_attributed_usd": 6557.16,
+          "last_seen": "2026-05-27T02:13:09.000Z",
+          "sample_tweet_url": "https://x.com/MeltedMindz/status/2059457853203869764",
+          "avg_per_post": 819.64
+        },
+        {
+          "author": "Root_Edge",
+          "posts": 1,
+          "total_attributed_usd": 3960.51,
+          "last_seen": "2026-05-21T04:30:07.000Z",
+          "sample_tweet_url": "https://x.com/Root_Edge/status/2057317995056173141",
+          "avg_per_post": 3960.51
+        },
+        {
+          "author": "ClawdiaBotAI",
+          "posts": 7,
+          "total_attributed_usd": 3701.22,
+          "last_seen": "2026-05-26T17:02:07.000Z",
+          "sample_tweet_url": "https://x.com/ClawdiaBotAI/status/2059319179027607793",
+          "avg_per_post": 528.75
+        },
+        {
+          "author": "9LunaNguyen9",
+          "posts": 5,
+          "total_attributed_usd": 3035.13,
+          "last_seen": "2026-05-24T13:25:51.000Z",
+          "sample_tweet_url": "https://x.com/9LunaNguyen9/status/2058539978679099801",
+          "avg_per_post": 607.03
+        },
+        {
+          "author": "The_Jedi_DeFi",
+          "posts": 1,
+          "total_attributed_usd": 2683.01,
+          "last_seen": "2026-05-21T17:39:59.000Z",
+          "sample_tweet_url": "https://x.com/The_Jedi_DeFi/status/2057516772173971647",
+          "avg_per_post": 2683.01
+        },
+        {
+          "author": "CMutse86",
+          "posts": 10,
+          "total_attributed_usd": 2573.99,
+          "last_seen": "2026-05-20T15:50:34.000Z",
+          "sample_tweet_url": "https://x.com/CMutse86/status/2057126848534831108",
+          "avg_per_post": 257.4
+        },
+        {
+          "author": "chrisgivesaf",
+          "posts": 1,
+          "total_attributed_usd": 2573.99,
+          "last_seen": "2026-05-20T15:31:18.000Z",
+          "sample_tweet_url": "https://x.com/chrisgivesaf/status/2057121999919468782",
+          "avg_per_post": 2573.99
+        },
+        {
+          "author": "AntiHunterAI",
+          "posts": 14,
+          "total_attributed_usd": 2432.25,
+          "last_seen": "2026-05-24T09:41:20.000Z",
+          "sample_tweet_url": "https://x.com/AntiHunterAI/status/2058483475783565549",
+          "avg_per_post": 173.73
+        },
+        {
+          "author": "OnlyLucius",
+          "posts": 1,
+          "total_attributed_usd": 2163.98,
+          "last_seen": "2026-05-21T16:06:04.000Z",
+          "sample_tweet_url": "https://x.com/OnlyLucius/status/2057493135593230774",
+          "avg_per_post": 2163.98
+        },
+        {
+          "author": "Antification",
+          "posts": 6,
+          "total_attributed_usd": 1752.01,
+          "last_seen": "2026-05-27T02:43:05.000Z",
+          "sample_tweet_url": "https://x.com/Antification/status/2059465385133687270",
+          "avg_per_post": 292
+        },
+        {
+          "author": "gabe_onchain",
+          "posts": 1,
+          "total_attributed_usd": 1330.44,
+          "last_seen": "2026-05-22T10:57:11.000Z",
+          "sample_tweet_url": "https://x.com/gabe_onchain/status/2057777791219683382",
+          "avg_per_post": 1330.44
+        },
+        {
+          "author": "Fv20000",
+          "posts": 1,
+          "total_attributed_usd": 1096.91,
+          "last_seen": "2026-05-25T03:14:02.000Z",
+          "sample_tweet_url": "https://x.com/Fv20000/status/2058748397130076507",
+          "avg_per_post": 1096.91
+        },
+        {
+          "author": "nxt3d",
+          "posts": 1,
+          "total_attributed_usd": 1096.91,
+          "last_seen": "2026-05-25T03:09:07.000Z",
+          "sample_tweet_url": "https://x.com/nxt3d/status/2058747159147597964",
+          "avg_per_post": 1096.91
+        },
+        {
+          "author": "dozing_awl",
+          "posts": 1,
+          "total_attributed_usd": 981.31,
+          "last_seen": "2026-05-21T05:12:00.000Z",
+          "sample_tweet_url": "https://x.com/dozing_awl/status/2057328534146973700",
+          "avg_per_post": 981.31
+        },
+        {
+          "author": "based_elnen",
+          "posts": 2,
+          "total_attributed_usd": 955.92,
+          "last_seen": "2026-05-24T15:07:21.000Z",
+          "sample_tweet_url": "https://x.com/based_elnen/status/2058565521298039288",
+          "avg_per_post": 477.96
+        },
+        {
+          "author": "xrtzbase",
+          "posts": 1,
+          "total_attributed_usd": 784.48,
+          "last_seen": "2026-05-24T22:31:49.000Z",
+          "sample_tweet_url": "https://x.com/xrtzbase/status/2058677375744008543",
+          "avg_per_post": 784.48
+        },
+        {
+          "author": "Coop_Daniels",
+          "posts": 2,
+          "total_attributed_usd": 746.08,
+          "last_seen": "2026-05-22T03:54:38.000Z",
+          "sample_tweet_url": "https://x.com/Coop_Daniels/status/2057671453294891158",
+          "avg_per_post": 373.04
+        },
+        {
+          "author": "serc1n",
+          "posts": 2,
+          "total_attributed_usd": 735.41,
+          "last_seen": "2026-05-25T14:13:48.000Z",
+          "sample_tweet_url": "https://x.com/serc1n/status/2058914432273539163",
+          "avg_per_post": 367.7
+        },
+        {
+          "author": "SangPham200598",
+          "posts": 7,
+          "total_attributed_usd": 563.34,
+          "last_seen": "2026-05-26T19:59:08.000Z",
+          "sample_tweet_url": "https://x.com/SangPham200598/status/2059363727498236359",
+          "avg_per_post": 80.48
+        },
+        {
+          "author": "mosope03",
+          "posts": 1,
+          "total_attributed_usd": 454.46,
+          "last_seen": "2026-05-24T13:49:20.000Z",
+          "sample_tweet_url": "https://x.com/mosope03/status/2058545890650997051",
+          "avg_per_post": 454.46
+        },
+        {
+          "author": "CodinCowboy",
+          "posts": 5,
+          "total_attributed_usd": 416.99,
+          "last_seen": "2026-05-27T02:19:07.000Z",
+          "sample_tweet_url": "https://x.com/CodinCowboy/status/2059459352524906809",
+          "avg_per_post": 83.4
+        },
+        {
+          "author": "soot_baler",
+          "posts": 1,
+          "total_attributed_usd": 402.46,
+          "last_seen": "2026-05-20T22:36:49.000Z",
+          "sample_tweet_url": "https://x.com/soot_baler/status/2057229083646242825",
+          "avg_per_post": 402.46
+        },
+        {
+          "author": "Beez0223",
+          "posts": 1,
+          "total_attributed_usd": 337.36,
+          "last_seen": "2026-05-23T02:01:59.000Z",
+          "sample_tweet_url": "https://x.com/Beez0223/status/2058005492559917475",
+          "avg_per_post": 337.36
+        },
+        {
+          "author": "DrPopescu1",
+          "posts": 2,
+          "total_attributed_usd": 268.22,
+          "last_seen": "2026-05-26T10:52:53.000Z",
+          "sample_tweet_url": "https://x.com/DrPopescu1/status/2059226261583466574",
+          "avg_per_post": 134.11
+        },
+        {
+          "author": "xcrypto_chad",
+          "posts": 1,
+          "total_attributed_usd": 254.04,
+          "last_seen": "2026-05-22T21:49:13.000Z",
+          "sample_tweet_url": "https://x.com/xcrypto_chad/status/2057941881795846262",
+          "avg_per_post": 254.04
+        },
+        {
+          "author": "4eTvzLx3k676851",
+          "posts": 6,
+          "total_attributed_usd": 113.05,
+          "last_seen": "2026-05-25T16:52:34.000Z",
+          "sample_tweet_url": "https://x.com/4eTvzLx3k676851/status/2058954388031361517",
+          "avg_per_post": 18.84
+        },
+        {
+          "author": "_seacasa",
+          "posts": 2,
+          "total_attributed_usd": 68.32,
+          "last_seen": "2026-05-26T17:38:03.000Z",
+          "sample_tweet_url": "https://x.com/_seacasa/status/2059328225013342569",
+          "avg_per_post": 34.16
+        },
+        {
+          "author": "OfficialChymso",
+          "posts": 1,
+          "total_attributed_usd": 68.32,
+          "last_seen": "2026-05-26T14:16:48.000Z",
+          "sample_tweet_url": "https://x.com/OfficialChymso/status/2059277578502852792",
+          "avg_per_post": 68.32
+        },
+        {
+          "author": "big_wego79170",
+          "posts": 3,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T11:30:11.000Z",
+          "sample_tweet_url": "https://x.com/big_wego79170/status/2059235645986419093",
+          "avg_per_post": 0
+        },
+        {
+          "author": "PrehensileThumb",
+          "posts": 4,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T21:14:23.000Z",
+          "sample_tweet_url": "https://x.com/PrehensileThumb/status/2059382663199469575",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xMaridjo",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-25T12:48:24.000Z",
+          "sample_tweet_url": "https://x.com/0xMaridjo/status/2058892943952581091",
+          "avg_per_post": 0
+        },
+        {
+          "author": "WuublowxxD",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-24T17:34:56.000Z",
+          "sample_tweet_url": "https://x.com/WuublowxxD/status/2058602663344800174",
+          "avg_per_post": 0
+        },
+        {
+          "author": "waytodo_",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-24T09:45:59.000Z",
+          "sample_tweet_url": "https://x.com/waytodo_/status/2058484647643042227",
+          "avg_per_post": 0
+        },
+        {
+          "author": "jayz_eth",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-21T21:11:47.000Z",
+          "sample_tweet_url": "https://x.com/jayz_eth/status/2057570069790482783",
+          "avg_per_post": 0
+        },
+        {
+          "author": "nickvrnn",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:30:26.000Z",
+          "sample_tweet_url": "https://x.com/nickvrnn/status/2059477300564177249",
+          "avg_per_post": 0
+        },
+        {
+          "author": "CryptolandC",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:17:09.000Z",
+          "sample_tweet_url": "https://x.com/CryptolandC/status/2059473957628039679",
+          "avg_per_post": 0
+        },
+        {
+          "author": "bankrbot",
+          "posts": 3,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:05:26.000Z",
+          "sample_tweet_url": "https://x.com/bankrbot/status/2059471009439441284",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0x_SlumPark",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:04:18.000Z",
+          "sample_tweet_url": "https://x.com/0x_SlumPark/status/2059470726147788941",
+          "avg_per_post": 0
+        },
+        {
+          "author": "GenuineRealMoe",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:02:47.000Z",
+          "sample_tweet_url": "https://x.com/GenuineRealMoe/status/2059470343077777479",
+          "avg_per_post": 0
+        },
+        {
+          "author": "ElNakaChico",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:50:36.000Z",
+          "sample_tweet_url": "https://x.com/ElNakaChico/status/2059467278542938162",
+          "avg_per_post": 0
+        },
+        {
+          "author": "sartocrates",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:43:44.000Z",
+          "sample_tweet_url": "https://x.com/sartocrates/status/2059465548405026969",
+          "avg_per_post": 0
+        },
+        {
+          "author": "shockwaved91117",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:42:58.000Z",
+          "sample_tweet_url": "https://x.com/shockwaved91117/status/2059465357421580459",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xcaosheng_888",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T04:17:16.000Z",
+          "sample_tweet_url": "https://x.com/0xcaosheng_888/status/2059126701335163119",
+          "avg_per_post": 0
+        }
+      ]
+    },
+    "GITLAWB": {
+      "token": "GITLAWB",
+      "contract": "0x5f980dcfc4c0fa3911554cf5ab288ed0eb13dba3",
+      "pool": "0xec33256bf1ded407a57fd3c1965e7556e42ac14db09bc4e6fef57d5e2eb0b0b9",
+      "window": "7d",
+      "computedAt": "2026-05-27T03:39:34.147Z",
+      "sampleSize": {
+        "tweets": 183,
+        "bars": 168
+      },
+      "baseline_hourly_usd": 44456.01,
+      "leaderboard": [
+        {
+          "author": "ffjaa8",
+          "posts": 10,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T03:22:14.000Z",
+          "sample_tweet_url": "https://x.com/ffjaa8/status/2059475235750269178",
+          "avg_per_post": 5104.12
+        },
+        {
+          "author": "CryptoflareETHm",
+          "posts": 9,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T03:19:38.000Z",
+          "sample_tweet_url": "https://x.com/CryptoflareETHm/status/2059474582214750324",
+          "avg_per_post": 5671.24
+        },
+        {
+          "author": "Teknoj00",
+          "posts": 8,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T03:06:36.000Z",
+          "sample_tweet_url": "https://x.com/Teknoj00/status/2059471304219042174",
+          "avg_per_post": 6380.15
+        },
+        {
+          "author": "jicjayj",
+          "posts": 2,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T02:45:07.000Z",
+          "sample_tweet_url": "https://x.com/jicjayj/status/2059465898537161155",
+          "avg_per_post": 25520.58
+        },
+        {
+          "author": "ProtocolProteus",
+          "posts": 3,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T02:45:00.000Z",
+          "sample_tweet_url": "https://x.com/ProtocolProteus/status/2059465868300697842",
+          "avg_per_post": 17013.72
+        },
+        {
+          "author": "Bl0omFilter_",
+          "posts": 2,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T02:19:08.000Z",
+          "sample_tweet_url": "https://x.com/Bl0omFilter_/status/2059459356391858353",
+          "avg_per_post": 25520.58
+        },
+        {
+          "author": "FigenWeb3xsl",
+          "posts": 3,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T02:14:04.000Z",
+          "sample_tweet_url": "https://x.com/FigenWeb3xsl/status/2059458080971059474",
+          "avg_per_post": 17013.72
+        },
+        {
+          "author": "MempoolMoss",
+          "posts": 1,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T00:48:25.000Z",
+          "sample_tweet_url": "https://x.com/MempoolMoss/status/2059436529609498925",
+          "avg_per_post": 51041.16
+        },
+        {
+          "author": "hundredbandclip",
+          "posts": 3,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T03:35:27.000Z",
+          "sample_tweet_url": "https://x.com/hundredbandclip/status/2059478563561132032",
+          "avg_per_post": 17013.72
+        },
+        {
+          "author": "priceertag_",
+          "posts": 1,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T00:47:54.000Z",
+          "sample_tweet_url": "https://x.com/priceertag_/status/2059436398957269215",
+          "avg_per_post": 51041.16
+        },
+        {
+          "author": "RandyBoyz7",
+          "posts": 1,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T00:38:12.000Z",
+          "sample_tweet_url": "https://x.com/RandyBoyz7/status/2059433957393871354",
+          "avg_per_post": 51041.16
+        },
+        {
+          "author": "nugz_elev8",
+          "posts": 1,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T00:28:11.000Z",
+          "sample_tweet_url": "https://x.com/nugz_elev8/status/2059431438081048811",
+          "avg_per_post": 51041.16
+        },
+        {
+          "author": "gitcanvas",
+          "posts": 2,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T02:50:01.000Z",
+          "sample_tweet_url": "https://x.com/gitcanvas/status/2059467131796980044",
+          "avg_per_post": 25520.58
+        },
+        {
+          "author": "Antification",
+          "posts": 1,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T00:14:16.000Z",
+          "sample_tweet_url": "https://x.com/Antification/status/2059427933471793269",
+          "avg_per_post": 51041.16
+        },
+        {
+          "author": "bloom_rust",
+          "posts": 1,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T00:11:16.000Z",
+          "sample_tweet_url": "https://x.com/bloom_rust/status/2059427181068210477",
+          "avg_per_post": 51041.16
+        },
+        {
+          "author": "sinter_wagon",
+          "posts": 1,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T00:11:08.000Z",
+          "sample_tweet_url": "https://x.com/sinter_wagon/status/2059427146003775813",
+          "avg_per_post": 51041.16
+        },
+        {
+          "author": "CycleSniper",
+          "posts": 2,
+          "total_attributed_usd": 51041.16,
+          "last_seen": "2026-05-27T00:10:13.000Z",
+          "sample_tweet_url": "https://x.com/CycleSniper/status/2059426916554461194",
+          "avg_per_post": 25520.58
+        },
+        {
+          "author": "raja_bear",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:35:17.000Z",
+          "sample_tweet_url": "https://x.com/raja_bear/status/2059478523807408153",
+          "avg_per_post": 0
+        },
+        {
+          "author": "kimcryptoVN",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:21:17.000Z",
+          "sample_tweet_url": "https://x.com/kimcryptoVN/status/2059474999384433149",
+          "avg_per_post": 0
+        },
+        {
+          "author": "WilliamBelfort_",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:21:16.000Z",
+          "sample_tweet_url": "https://x.com/WilliamBelfort_/status/2059474996372595014",
+          "avg_per_post": 0
+        },
+        {
+          "author": "altcoinchaosxbt",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:20:30.000Z",
+          "sample_tweet_url": "https://x.com/altcoinchaosxbt/status/2059474803032273002",
+          "avg_per_post": 0
+        },
+        {
+          "author": "gas_gainsbkmnq",
+          "posts": 3,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:18:41.000Z",
+          "sample_tweet_url": "https://x.com/gas_gainsbkmnq/status/2059474343499887069",
+          "avg_per_post": 0
+        },
+        {
+          "author": "pitch_cracvdpu",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:18:36.000Z",
+          "sample_tweet_url": "https://x.com/pitch_cracvdpu/status/2059474322159210699",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Dedena06",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:17:45.000Z",
+          "sample_tweet_url": "https://x.com/Dedena06/status/2059474111391506743",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Ren9706",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:09:37.000Z",
+          "sample_tweet_url": "https://x.com/Ren9706/status/2059472061882335474",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Jeffoy88",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:06:32.000Z",
+          "sample_tweet_url": "https://x.com/Jeffoy88/status/2059471287727382666",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Grootree_3MD",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:01:04.000Z",
+          "sample_tweet_url": "https://x.com/Grootree_3MD/status/2059469912373137772",
+          "avg_per_post": 0
+        },
+        {
+          "author": "hash_hals",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:49:15.000Z",
+          "sample_tweet_url": "https://x.com/hash_hals/status/2059466935629431230",
+          "avg_per_post": 0
+        },
+        {
+          "author": "guttered_keel",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:48:59.000Z",
+          "sample_tweet_url": "https://x.com/guttered_keel/status/2059466867882828152",
+          "avg_per_post": 0
+        },
+        {
+          "author": "stippled_crown",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:45:01.000Z",
+          "sample_tweet_url": "https://x.com/stippled_crown/status/2059465873589486041",
+          "avg_per_post": 0
+        },
+        {
+          "author": "DragonETHs8",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:39:13.000Z",
+          "sample_tweet_url": "https://x.com/DragonETHs8/status/2059464410717167980",
+          "avg_per_post": 0
+        },
+        {
+          "author": "syukrisolana",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:29:11.000Z",
+          "sample_tweet_url": "https://x.com/syukrisolana/status/2059461888459878600",
+          "avg_per_post": 0
+        },
+        {
+          "author": "DaMikey23",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:25:19.000Z",
+          "sample_tweet_url": "https://x.com/DaMikey23/status/2059460915255230712",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xkarmaFi",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:16:45.000Z",
+          "sample_tweet_url": "https://x.com/0xkarmaFi/status/2059458758061986191",
+          "avg_per_post": 0
+        },
+        {
+          "author": "reppoagent555",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:11:08.000Z",
+          "sample_tweet_url": "https://x.com/reppoagent555/status/2059457345051304121",
+          "avg_per_post": 0
+        },
+        {
+          "author": "MitchPresc26117",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:09:50.000Z",
+          "sample_tweet_url": "https://x.com/MitchPresc26117/status/2059457018034004045",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Ludyzosd",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:06:51.000Z",
+          "sample_tweet_url": "https://x.com/Ludyzosd/status/2059456264917393613",
+          "avg_per_post": 0
+        },
+        {
+          "author": "InfinitEd90",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:05:48.000Z",
+          "sample_tweet_url": "https://x.com/InfinitEd90/status/2059456002446209300",
+          "avg_per_post": 0
+        },
+        {
+          "author": "CryptoPsychx",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:04:55.000Z",
+          "sample_tweet_url": "https://x.com/CryptoPsychx/status/2059455780437237822",
+          "avg_per_post": 0
+        },
+        {
+          "author": "huygostbt1",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:04:50.000Z",
+          "sample_tweet_url": "https://x.com/huygostbt1/status/2059455760875323614",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xrhys_nolan",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:02:02.000Z",
+          "sample_tweet_url": "https://x.com/0xrhys_nolan/status/2059455055196254600",
+          "avg_per_post": 0
+        },
+        {
+          "author": "malucb82",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:01:20.000Z",
+          "sample_tweet_url": "https://x.com/malucb82/status/2059454876510237090",
+          "avg_per_post": 0
+        },
+        {
+          "author": "syed_slot",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:57:23.000Z",
+          "sample_tweet_url": "https://x.com/syed_slot/status/2059453884083650799",
+          "avg_per_post": 0
+        },
+        {
+          "author": "VoidVoe",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:48:58.000Z",
+          "sample_tweet_url": "https://x.com/VoidVoe/status/2059451768333869472",
+          "avg_per_post": 0
+        },
+        {
+          "author": "BluppiCharms",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:48:09.000Z",
+          "sample_tweet_url": "https://x.com/BluppiCharms/status/2059451561546547465",
+          "avg_per_post": 0
+        },
+        {
+          "author": "waqszzz",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:45:36.000Z",
+          "sample_tweet_url": "https://x.com/waqszzz/status/2059450917024334143",
+          "avg_per_post": 0
+        },
+        {
+          "author": "bloc_boucher",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:45:19.000Z",
+          "sample_tweet_url": "https://x.com/bloc_boucher/status/2059450845763141687",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Cryptosmith5",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:42:51.000Z",
+          "sample_tweet_url": "https://x.com/Cryptosmith5/status/2059450227828932972",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Cloverx8888",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:37:45.000Z",
+          "sample_tweet_url": "https://x.com/Cloverx8888/status/2059448943415529623",
+          "avg_per_post": 0
+        },
+        {
+          "author": "just_skill_it",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:22:53.000Z",
+          "sample_tweet_url": "https://x.com/just_skill_it/status/2059445203811889556",
+          "avg_per_post": 0
+        }
+      ]
+    },
+    "AEON": {
+      "token": "AEON",
+      "contract": "0xbf8e8f0e8866a7052f948c16508644347c57aba3",
+      "pool": "0x4a9b9e13975d26f4e3e17c655593bb82145dd4452aedafb826d856b817c9cfd4",
+      "window": "7d",
+      "computedAt": "2026-05-27T03:39:38.609Z",
+      "sampleSize": {
+        "tweets": 194,
+        "bars": 168
+      },
+      "baseline_hourly_usd": 36276.22,
+      "leaderboard": [
+        {
+          "author": "ffjaa8",
+          "posts": 18,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:22:03.000Z",
+          "sample_tweet_url": "https://x.com/ffjaa8/status/2059475190053273760",
+          "avg_per_post": 0
+        },
+        {
+          "author": "proof_pissarro",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:19:26.000Z",
+          "sample_tweet_url": "https://x.com/proof_pissarro/status/2059474531182673990",
+          "avg_per_post": 0
+        },
+        {
+          "author": "hyaerina",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:19:05.000Z",
+          "sample_tweet_url": "https://x.com/hyaerina/status/2059474444595384767",
+          "avg_per_post": 0
+        },
+        {
+          "author": "MCGlive",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:17:27.000Z",
+          "sample_tweet_url": "https://x.com/MCGlive/status/2059474035516285222",
+          "avg_per_post": 0
+        },
+        {
+          "author": "SiliconSovi7ou",
+          "posts": 4,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:15:19.000Z",
+          "sample_tweet_url": "https://x.com/SiliconSovi7ou/status/2059473495617077419",
+          "avg_per_post": 0
+        },
+        {
+          "author": "VoidVoe",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:15:16.000Z",
+          "sample_tweet_url": "https://x.com/VoidVoe/status/2059473486385401891",
+          "avg_per_post": 0
+        },
+        {
+          "author": "HashHarborittt",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:15:16.000Z",
+          "sample_tweet_url": "https://x.com/HashHarborittt/status/2059473485077082566",
+          "avg_per_post": 0
+        },
+        {
+          "author": "JamcStream",
+          "posts": 3,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:04:40.000Z",
+          "sample_tweet_url": "https://x.com/JamcStream/status/2059470818690679174",
+          "avg_per_post": 0
+        },
+        {
+          "author": "zhuilong888",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:02:51.000Z",
+          "sample_tweet_url": "https://x.com/zhuilong888/status/2059470358185640355",
+          "avg_per_post": 0
+        },
+        {
+          "author": "dust_lute",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:49:39.000Z",
+          "sample_tweet_url": "https://x.com/dust_lute/status/2059467037609505274",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xWhy_26",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:33:20.000Z",
+          "sample_tweet_url": "https://x.com/0xWhy_26/status/2059462930698244495",
+          "avg_per_post": 0
+        },
+        {
+          "author": "btcbabycow",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:26:35.000Z",
+          "sample_tweet_url": "https://x.com/btcbabycow/status/2059461231984193987",
+          "avg_per_post": 0
+        },
+        {
+          "author": "DaMikey23",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:25:19.000Z",
+          "sample_tweet_url": "https://x.com/DaMikey23/status/2059460915255230712",
+          "avg_per_post": 0
+        },
+        {
+          "author": "masa9eth",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:23:23.000Z",
+          "sample_tweet_url": "https://x.com/masa9eth/status/2059460427801854153",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xikaros",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:20:20.000Z",
+          "sample_tweet_url": "https://x.com/0xikaros/status/2059459658046177747",
+          "avg_per_post": 0
+        },
+        {
+          "author": "dust_puff3asr",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:19:36.000Z",
+          "sample_tweet_url": "https://x.com/dust_puff3asr/status/2059459474277257520",
+          "avg_per_post": 0
+        },
+        {
+          "author": "rusted_tong",
+          "posts": 4,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:15:38.000Z",
+          "sample_tweet_url": "https://x.com/rusted_tong/status/2059458478524301330",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Ludyzosd",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:06:51.000Z",
+          "sample_tweet_url": "https://x.com/Ludyzosd/status/2059456264917393613",
+          "avg_per_post": 0
+        },
+        {
+          "author": "wenaltseason",
+          "posts": 4,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:40:12.000Z",
+          "sample_tweet_url": "https://x.com/wenaltseason/status/2059449559542091914",
+          "avg_per_post": 0
+        },
+        {
+          "author": "boldbase",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:22:28.000Z",
+          "sample_tweet_url": "https://x.com/boldbase/status/2059445098442875301",
+          "avg_per_post": 0
+        },
+        {
+          "author": "bl0ck_bandit",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:19:22.000Z",
+          "sample_tweet_url": "https://x.com/bl0ck_bandit/status/2059444318822142057",
+          "avg_per_post": 0
+        },
+        {
+          "author": "XdInsiderr",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:59:38.000Z",
+          "sample_tweet_url": "https://x.com/XdInsiderr/status/2059439349343584394",
+          "avg_per_post": 0
+        },
+        {
+          "author": "BasedCult33",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:50:01.000Z",
+          "sample_tweet_url": "https://x.com/BasedCult33/status/2059436929016349121",
+          "avg_per_post": 0
+        },
+        {
+          "author": "cryptowithsaad",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:49:26.000Z",
+          "sample_tweet_url": "https://x.com/cryptowithsaad/status/2059436785130975740",
+          "avg_per_post": 0
+        },
+        {
+          "author": "nugz_elev8",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:28:11.000Z",
+          "sample_tweet_url": "https://x.com/nugz_elev8/status/2059431438081048811",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Eroc111111",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:23:25.000Z",
+          "sample_tweet_url": "https://x.com/Eroc111111/status/2059430238149611751",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Granolsson15",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:15:29.000Z",
+          "sample_tweet_url": "https://x.com/Granolsson15/status/2059428239500861803",
+          "avg_per_post": 0
+        },
+        {
+          "author": "platinum_shiver",
+          "posts": 3,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:11:35.000Z",
+          "sample_tweet_url": "https://x.com/platinum_shiver/status/2059427258683855327",
+          "avg_per_post": 0
+        },
+        {
+          "author": "ajayhyt",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:03:32.000Z",
+          "sample_tweet_url": "https://x.com/ajayhyt/status/2059425233514193052",
+          "avg_per_post": 0
+        },
+        {
+          "author": "sb_anxya",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:02:43.000Z",
+          "sample_tweet_url": "https://x.com/sb_anxya/status/2059425027649339695",
+          "avg_per_post": 0
+        },
+        {
+          "author": "MLA_SAVARKUiie",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:02:24.000Z",
+          "sample_tweet_url": "https://x.com/MLA_SAVARKUiie/status/2059424947567530483",
+          "avg_per_post": 0
+        },
+        {
+          "author": "sbnmckr",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:02:03.000Z",
+          "sample_tweet_url": "https://x.com/sbnmckr/status/2059424860556730798",
+          "avg_per_post": 0
+        },
+        {
+          "author": "MisterNameless",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T23:28:19.000Z",
+          "sample_tweet_url": "https://x.com/MisterNameless/status/2059416372266877170",
+          "avg_per_post": 0
+        },
+        {
+          "author": "MempoolMoss",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T23:11:10.000Z",
+          "sample_tweet_url": "https://x.com/MempoolMoss/status/2059412053496824074",
+          "avg_per_post": 0
+        },
+        {
+          "author": "ochre_hiss",
+          "posts": 3,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T23:11:06.000Z",
+          "sample_tweet_url": "https://x.com/ochre_hiss/status/2059412039890792609",
+          "avg_per_post": 0
+        },
+        {
+          "author": "scumbled_flange",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:44:56.000Z",
+          "sample_tweet_url": "https://x.com/scumbled_flange/status/2059405451486437659",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xPiracyData",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:43:24.000Z",
+          "sample_tweet_url": "https://x.com/0xPiracyData/status/2059405067787047021",
+          "avg_per_post": 0
+        },
+        {
+          "author": "RektRelicafdt",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:41:15.000Z",
+          "sample_tweet_url": "https://x.com/RektRelicafdt/status/2059404524284961114",
+          "avg_per_post": 0
+        },
+        {
+          "author": "crypto_car6zxl",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:41:10.000Z",
+          "sample_tweet_url": "https://x.com/crypto_car6zxl/status/2059404505305776618",
+          "avg_per_post": 0
+        },
+        {
+          "author": "rust_comb",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:41:09.000Z",
+          "sample_tweet_url": "https://x.com/rust_comb/status/2059404499404349589",
+          "avg_per_post": 0
+        },
+        {
+          "author": "proxycodonebase",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:35:41.000Z",
+          "sample_tweet_url": "https://x.com/proxycodonebase/status/2059403125094584426",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xChadRekt",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:26:51.000Z",
+          "sample_tweet_url": "https://x.com/0xChadRekt/status/2059400899978519026",
+          "avg_per_post": 0
+        },
+        {
+          "author": "AndrewZuni60768",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:15:23.000Z",
+          "sample_tweet_url": "https://x.com/AndrewZuni60768/status/2059398014637416784",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Indaauhl",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:15:14.000Z",
+          "sample_tweet_url": "https://x.com/Indaauhl/status/2059397977005752380",
+          "avg_per_post": 0
+        },
+        {
+          "author": "chased_trap",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:10:45.000Z",
+          "sample_tweet_url": "https://x.com/chased_trap/status/2059396852269941022",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Shazam1337",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:00:59.000Z",
+          "sample_tweet_url": "https://x.com/Shazam1337/status/2059394394151637346",
+          "avg_per_post": 0
+        },
+        {
+          "author": "dunm_ola",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T21:47:03.000Z",
+          "sample_tweet_url": "https://x.com/dunm_ola/status/2059390888044908944",
+          "avg_per_post": 0
+        },
+        {
+          "author": "wershey65828",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T21:32:45.000Z",
+          "sample_tweet_url": "https://x.com/wershey65828/status/2059387288879239493",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xagent_",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T21:28:16.000Z",
+          "sample_tweet_url": "https://x.com/0xagent_/status/2059386160712134741",
+          "avg_per_post": 0
+        },
+        {
+          "author": "KennedyJes36228",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T21:21:18.000Z",
+          "sample_tweet_url": "https://x.com/KennedyJes36228/status/2059384406373220530",
+          "avg_per_post": 0
+        }
+      ]
+    },
+    "SURPLUS": {
+      "token": "SURPLUS",
+      "contract": "0xc52aedec3374422d7510e294cfaa90799595cba3",
+      "pool": "0xfc25fdd217e288d03a877f0b7d49e0bbe52b2288c88de929125062569fc7eb2a",
+      "window": "7d",
+      "computedAt": "2026-05-27T03:39:42.516Z",
+      "sampleSize": {
+        "tweets": 100,
+        "bars": 168
+      },
+      "baseline_hourly_usd": 67963.4,
+      "leaderboard": [
+        {
+          "author": "raja_bear",
+          "posts": 7,
+          "total_attributed_usd": 189679.88,
+          "last_seen": "2026-05-27T03:34:09.000Z",
+          "sample_tweet_url": "https://x.com/raja_bear/status/2059478235591672011",
+          "avg_per_post": 27097.13
+        },
+        {
+          "author": "ffjaa8",
+          "posts": 16,
+          "total_attributed_usd": 189679.88,
+          "last_seen": "2026-05-27T03:23:37.000Z",
+          "sample_tweet_url": "https://x.com/ffjaa8/status/2059475584473035094",
+          "avg_per_post": 11854.99
+        },
+        {
+          "author": "Bl0omFilter_",
+          "posts": 4,
+          "total_attributed_usd": 189679.88,
+          "last_seen": "2026-05-27T02:50:08.000Z",
+          "sample_tweet_url": "https://x.com/Bl0omFilter_/status/2059467160263749785",
+          "avg_per_post": 47419.97
+        },
+        {
+          "author": "nft_normancnfi",
+          "posts": 4,
+          "total_attributed_usd": 189679.88,
+          "last_seen": "2026-05-27T01:20:05.000Z",
+          "sample_tweet_url": "https://x.com/nft_normancnfi/status/2059444497130631523",
+          "avg_per_post": 47419.97
+        },
+        {
+          "author": "AL4YERCAKE",
+          "posts": 4,
+          "total_attributed_usd": 189679.88,
+          "last_seen": "2026-05-27T01:12:59.000Z",
+          "sample_tweet_url": "https://x.com/AL4YERCAKE/status/2059442710147117380",
+          "avg_per_post": 47419.97
+        },
+        {
+          "author": "fork_fragonard",
+          "posts": 1,
+          "total_attributed_usd": 110243.46,
+          "last_seen": "2026-05-27T01:50:06.000Z",
+          "sample_tweet_url": "https://x.com/fork_fragonard/status/2059452051482902797",
+          "avg_per_post": 110243.46
+        },
+        {
+          "author": "MisterNameless",
+          "posts": 2,
+          "total_attributed_usd": 110243.46,
+          "last_seen": "2026-05-27T01:33:54.000Z",
+          "sample_tweet_url": "https://x.com/MisterNameless/status/2059447974933987654",
+          "avg_per_post": 55121.73
+        },
+        {
+          "author": "chased_trap",
+          "posts": 1,
+          "total_attributed_usd": 110243.46,
+          "last_seen": "2026-05-27T01:19:49.000Z",
+          "sample_tweet_url": "https://x.com/chased_trap/status/2059444428893462824",
+          "avg_per_post": 110243.46
+        },
+        {
+          "author": "RektRelicafdt",
+          "posts": 1,
+          "total_attributed_usd": 110243.46,
+          "last_seen": "2026-05-27T01:19:48.000Z",
+          "sample_tweet_url": "https://x.com/RektRelicafdt/status/2059444428247351606",
+          "avg_per_post": 110243.46
+        },
+        {
+          "author": "HashHarborittt",
+          "posts": 2,
+          "total_attributed_usd": 110243.46,
+          "last_seen": "2026-05-27T01:16:07.000Z",
+          "sample_tweet_url": "https://x.com/HashHarborittt/status/2059443497695101228",
+          "avg_per_post": 55121.73
+        },
+        {
+          "author": "Berlin_btc",
+          "posts": 2,
+          "total_attributed_usd": 110243.46,
+          "last_seen": "2026-05-27T01:15:57.000Z",
+          "sample_tweet_url": "https://x.com/Berlin_btc/status/2059443455839858787",
+          "avg_per_post": 55121.73
+        },
+        {
+          "author": "real_javifx",
+          "posts": 1,
+          "total_attributed_usd": 110243.46,
+          "last_seen": "2026-05-27T01:02:07.000Z",
+          "sample_tweet_url": "https://x.com/real_javifx/status/2059439977369612580",
+          "avg_per_post": 110243.46
+        },
+        {
+          "author": "BRC20niubee",
+          "posts": 5,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T03:36:35.000Z",
+          "sample_tweet_url": "https://x.com/BRC20niubee/status/2059478847834484948",
+          "avg_per_post": 15887.28
+        },
+        {
+          "author": "zhiliangzhi5258",
+          "posts": 1,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:57:11.000Z",
+          "sample_tweet_url": "https://x.com/zhiliangzhi5258/status/2059438735750819984",
+          "avg_per_post": 79436.42
+        },
+        {
+          "author": "somos_arriba",
+          "posts": 1,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:52:46.000Z",
+          "sample_tweet_url": "https://x.com/somos_arriba/status/2059437621580034161",
+          "avg_per_post": 79436.42
+        },
+        {
+          "author": "rosin_dial",
+          "posts": 2,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:49:50.000Z",
+          "sample_tweet_url": "https://x.com/rosin_dial/status/2059436883286135174",
+          "avg_per_post": 39718.21
+        },
+        {
+          "author": "bloc_boucher",
+          "posts": 2,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:45:35.000Z",
+          "sample_tweet_url": "https://x.com/bloc_boucher/status/2059435815281758698",
+          "avg_per_post": 39718.21
+        },
+        {
+          "author": "consom888",
+          "posts": 1,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:36:12.000Z",
+          "sample_tweet_url": "https://x.com/consom888/status/2059433452823572981",
+          "avg_per_post": 79436.42
+        },
+        {
+          "author": "Pigggboy",
+          "posts": 1,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:33:22.000Z",
+          "sample_tweet_url": "https://x.com/Pigggboy/status/2059432741813236153",
+          "avg_per_post": 79436.42
+        },
+        {
+          "author": "iruletrenches",
+          "posts": 2,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:24:45.000Z",
+          "sample_tweet_url": "https://x.com/iruletrenches/status/2059430573005803689",
+          "avg_per_post": 39718.21
+        },
+        {
+          "author": "GenuineRealMoe",
+          "posts": 1,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:20:49.000Z",
+          "sample_tweet_url": "https://x.com/GenuineRealMoe/status/2059429584605741104",
+          "avg_per_post": 79436.42
+        },
+        {
+          "author": "async_ella",
+          "posts": 1,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:17:19.000Z",
+          "sample_tweet_url": "https://x.com/async_ella/status/2059428701331480612",
+          "avg_per_post": 79436.42
+        },
+        {
+          "author": "guttered_keel",
+          "posts": 2,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:15:58.000Z",
+          "sample_tweet_url": "https://x.com/guttered_keel/status/2059428363156984247",
+          "avg_per_post": 39718.21
+        },
+        {
+          "author": "dust_lute",
+          "posts": 2,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:15:53.000Z",
+          "sample_tweet_url": "https://x.com/dust_lute/status/2059428341808033922",
+          "avg_per_post": 39718.21
+        },
+        {
+          "author": "proof_pissarro",
+          "posts": 1,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:11:58.000Z",
+          "sample_tweet_url": "https://x.com/proof_pissarro/status/2059427355077067020",
+          "avg_per_post": 79436.42
+        },
+        {
+          "author": "kryptonite_110",
+          "posts": 1,
+          "total_attributed_usd": 79436.42,
+          "last_seen": "2026-05-27T00:10:12.000Z",
+          "sample_tweet_url": "https://x.com/kryptonite_110/status/2059426910979887573",
+          "avg_per_post": 79436.42
+        },
+        {
+          "author": "SunGnosis33",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:28:58.000Z",
+          "sample_tweet_url": "https://x.com/SunGnosis33/status/2059476931435954455",
+          "avg_per_post": 0
+        },
+        {
+          "author": "N0vaNexiqa6",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:15:29.000Z",
+          "sample_tweet_url": "https://x.com/N0vaNexiqa6/status/2059473537069670647",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Ren9706",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:09:37.000Z",
+          "sample_tweet_url": "https://x.com/Ren9706/status/2059472061882335474",
+          "avg_per_post": 0
+        },
+        {
+          "author": "bl0ck_bandit",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:50:20.000Z",
+          "sample_tweet_url": "https://x.com/bl0ck_bandit/status/2059467207814373577",
+          "avg_per_post": 0
+        },
+        {
+          "author": "ProtocolProteus",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:45:39.000Z",
+          "sample_tweet_url": "https://x.com/ProtocolProteus/status/2059466032733937744",
+          "avg_per_post": 0
+        },
+        {
+          "author": "stippled_crown",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:45:39.000Z",
+          "sample_tweet_url": "https://x.com/stippled_crown/status/2059466030271865136",
+          "avg_per_post": 0
+        },
+        {
+          "author": "aparjey",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:44:20.000Z",
+          "sample_tweet_url": "https://x.com/aparjey/status/2059465701405155506",
+          "avg_per_post": 0
+        },
+        {
+          "author": "mostly_yogi",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:34:20.000Z",
+          "sample_tweet_url": "https://x.com/mostly_yogi/status/2059463182142578989",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xWhy_26",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:33:20.000Z",
+          "sample_tweet_url": "https://x.com/0xWhy_26/status/2059462930698244495",
+          "avg_per_post": 0
+        },
+        {
+          "author": "masa9eth",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:23:23.000Z",
+          "sample_tweet_url": "https://x.com/masa9eth/status/2059460427801854153",
+          "avg_per_post": 0
+        },
+        {
+          "author": "jicjayj",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:20:15.000Z",
+          "sample_tweet_url": "https://x.com/jicjayj/status/2059459637544636526",
+          "avg_per_post": 0
+        },
+        {
+          "author": "platinum_shiver",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:20:08.000Z",
+          "sample_tweet_url": "https://x.com/platinum_shiver/status/2059459607895081446",
+          "avg_per_post": 0
+        },
+        {
+          "author": "TraderTurtle69",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:01:57.000Z",
+          "sample_tweet_url": "https://x.com/TraderTurtle69/status/2059455033134178701",
+          "avg_per_post": 0
+        },
+        {
+          "author": "alexiond_",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T23:44:58.000Z",
+          "sample_tweet_url": "https://x.com/alexiond_/status/2059420560426447286",
+          "avg_per_post": 0
+        },
+        {
+          "author": "scumbled_flange",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T23:41:47.000Z",
+          "sample_tweet_url": "https://x.com/scumbled_flange/status/2059419761419907276",
+          "avg_per_post": 0
+        },
+        {
+          "author": "sooted_baluster",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T23:41:45.000Z",
+          "sample_tweet_url": "https://x.com/sooted_baluster/status/2059419750963552506",
+          "avg_per_post": 0
+        },
+        {
+          "author": "OPOMSOL",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T23:25:20.000Z",
+          "sample_tweet_url": "https://x.com/OPOMSOL/status/2059415620438175767",
+          "avg_per_post": 0
+        },
+        {
+          "author": "VoidVoe",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:45:30.000Z",
+          "sample_tweet_url": "https://x.com/VoidVoe/status/2059405597426991285",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xChadRekt",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:26:51.000Z",
+          "sample_tweet_url": "https://x.com/0xChadRekt/status/2059400899978519026",
+          "avg_per_post": 0
+        },
+        {
+          "author": "onyx_snap",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:14:53.000Z",
+          "sample_tweet_url": "https://x.com/onyx_snap/status/2059397891588755684",
+          "avg_per_post": 0
+        },
+        {
+          "author": "apollos_trip",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T20:49:09.000Z",
+          "sample_tweet_url": "https://x.com/apollos_trip/status/2059376315178815804",
+          "avg_per_post": 0
+        },
+        {
+          "author": "thokani",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T20:24:51.000Z",
+          "sample_tweet_url": "https://x.com/thokani/status/2059370199996846393",
+          "avg_per_post": 0
+        },
+        {
+          "author": "SiliconSovi7ou",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T19:46:24.000Z",
+          "sample_tweet_url": "https://x.com/SiliconSovi7ou/status/2059360524614209847",
+          "avg_per_post": 0
+        },
+        {
+          "author": "rusted_tong",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T19:42:58.000Z",
+          "sample_tweet_url": "https://x.com/rusted_tong/status/2059359658310283599",
+          "avg_per_post": 0
+        }
+      ]
+    },
+    "SUPERGEMMA": {
+      "token": "SUPERGEMMA",
+      "contract": "0x572c4fa77623652411574c51b5ddb7e1b750aba3",
+      "pool": "0x7016371c9642e346094b51b9603e429828d3f8063537770020115af81b019145",
+      "window": "7d",
+      "computedAt": "2026-05-27T03:40:01.509Z",
+      "sampleSize": {
+        "tweets": 100,
+        "bars": 158
+      },
+      "baseline_hourly_usd": 48066.1,
+      "leaderboard": [
+        {
+          "author": "raja_bear",
+          "posts": 6,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:35:03.000Z",
+          "sample_tweet_url": "https://x.com/raja_bear/status/2059478465070473305",
+          "avg_per_post": 0
+        },
+        {
+          "author": "GIGANIGGAY",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:30:24.000Z",
+          "sample_tweet_url": "https://x.com/GIGANIGGAY/status/2059477294805295271",
+          "avg_per_post": 0
+        },
+        {
+          "author": "ffjaa8",
+          "posts": 18,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:22:36.000Z",
+          "sample_tweet_url": "https://x.com/ffjaa8/status/2059475331606798589",
+          "avg_per_post": 0
+        },
+        {
+          "author": "rust_comb",
+          "posts": 4,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:19:48.000Z",
+          "sample_tweet_url": "https://x.com/rust_comb/status/2059474624455303325",
+          "avg_per_post": 0
+        },
+        {
+          "author": "hash_hals",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:17:00.000Z",
+          "sample_tweet_url": "https://x.com/hash_hals/status/2059473920185741609",
+          "avg_per_post": 0
+        },
+        {
+          "author": "ZuzuuGang",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:11:13.000Z",
+          "sample_tweet_url": "https://x.com/ZuzuuGang/status/2059472464535527675",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Ren9706",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T03:09:37.000Z",
+          "sample_tweet_url": "https://x.com/Ren9706/status/2059472061882335474",
+          "avg_per_post": 0
+        },
+        {
+          "author": "jicjayj",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:50:01.000Z",
+          "sample_tweet_url": "https://x.com/jicjayj/status/2059467128491667860",
+          "avg_per_post": 0
+        },
+        {
+          "author": "scumbled_flange",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:47:07.000Z",
+          "sample_tweet_url": "https://x.com/scumbled_flange/status/2059466400666919340",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xikaros",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:20:20.000Z",
+          "sample_tweet_url": "https://x.com/0xikaros/status/2059459658046177747",
+          "avg_per_post": 0
+        },
+        {
+          "author": "chased_trap",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:20:03.000Z",
+          "sample_tweet_url": "https://x.com/chased_trap/status/2059459588383178793",
+          "avg_per_post": 0
+        },
+        {
+          "author": "crypto_car6zxl",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:17:16.000Z",
+          "sample_tweet_url": "https://x.com/crypto_car6zxl/status/2059458887049269317",
+          "avg_per_post": 0
+        },
+        {
+          "author": "RektRelicafdt",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T02:17:05.000Z",
+          "sample_tweet_url": "https://x.com/RektRelicafdt/status/2059458843864613276",
+          "avg_per_post": 0
+        },
+        {
+          "author": "VoidVoe",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:49:52.000Z",
+          "sample_tweet_url": "https://x.com/VoidVoe/status/2059451992829771837",
+          "avg_per_post": 0
+        },
+        {
+          "author": "AKCB_Ron",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:24:57.000Z",
+          "sample_tweet_url": "https://x.com/AKCB_Ron/status/2059445722160976238",
+          "avg_per_post": 0
+        },
+        {
+          "author": "dust_puff3asr",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:19:43.000Z",
+          "sample_tweet_url": "https://x.com/dust_puff3asr/status/2059444405354770680",
+          "avg_per_post": 0
+        },
+        {
+          "author": "bloc_boucher",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:17:09.000Z",
+          "sample_tweet_url": "https://x.com/bloc_boucher/status/2059443759520100818",
+          "avg_per_post": 0
+        },
+        {
+          "author": "bl0ck_bandit",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T01:17:01.000Z",
+          "sample_tweet_url": "https://x.com/bl0ck_bandit/status/2059443726855151722",
+          "avg_per_post": 0
+        },
+        {
+          "author": "ochre_hiss",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:49:52.000Z",
+          "sample_tweet_url": "https://x.com/ochre_hiss/status/2059436892677087322",
+          "avg_per_post": 0
+        },
+        {
+          "author": "guttered_keel",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:49:39.000Z",
+          "sample_tweet_url": "https://x.com/guttered_keel/status/2059436839744815431",
+          "avg_per_post": 0
+        },
+        {
+          "author": "digital_doplkk",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:49:39.000Z",
+          "sample_tweet_url": "https://x.com/digital_doplkk/status/2059436839451369788",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Bl0omFilter_",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:46:48.000Z",
+          "sample_tweet_url": "https://x.com/Bl0omFilter_/status/2059436122430652833",
+          "avg_per_post": 0
+        },
+        {
+          "author": "consom888",
+          "posts": 3,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:36:12.000Z",
+          "sample_tweet_url": "https://x.com/consom888/status/2059433452823572981",
+          "avg_per_post": 0
+        },
+        {
+          "author": "N0vaNexiqa6",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-27T00:15:50.000Z",
+          "sample_tweet_url": "https://x.com/N0vaNexiqa6/status/2059428327224385848",
+          "avg_per_post": 0
+        },
+        {
+          "author": "rosin_dial",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T23:45:56.000Z",
+          "sample_tweet_url": "https://x.com/rosin_dial/status/2059420802400113059",
+          "avg_per_post": 0
+        },
+        {
+          "author": "soot_baler",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T23:45:35.000Z",
+          "sample_tweet_url": "https://x.com/soot_baler/status/2059420716374933872",
+          "avg_per_post": 0
+        },
+        {
+          "author": "baliscooter89",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T23:24:42.000Z",
+          "sample_tweet_url": "https://x.com/baliscooter89/status/2059415460937191733",
+          "avg_per_post": 0
+        },
+        {
+          "author": "pitch_cracvdpu",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T23:15:57.000Z",
+          "sample_tweet_url": "https://x.com/pitch_cracvdpu/status/2059413259397288152",
+          "avg_per_post": 0
+        },
+        {
+          "author": "HashHarborittt",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T23:15:29.000Z",
+          "sample_tweet_url": "https://x.com/HashHarborittt/status/2059413142833348745",
+          "avg_per_post": 0
+        },
+        {
+          "author": "ajayhyt",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:58:36.000Z",
+          "sample_tweet_url": "https://x.com/ajayhyt/status/2059408890203164942",
+          "avg_per_post": 0
+        },
+        {
+          "author": "sb_anxya",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:58:12.000Z",
+          "sample_tweet_url": "https://x.com/sb_anxya/status/2059408790311637427",
+          "avg_per_post": 0
+        },
+        {
+          "author": "MLA_SAVARKUiie",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:57:45.000Z",
+          "sample_tweet_url": "https://x.com/MLA_SAVARKUiie/status/2059408676671066357",
+          "avg_per_post": 0
+        },
+        {
+          "author": "sbnmckr",
+          "posts": 2,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:57:24.000Z",
+          "sample_tweet_url": "https://x.com/sbnmckr/status/2059408590935330943",
+          "avg_per_post": 0
+        },
+        {
+          "author": "dao_votes_hxzc",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:45:34.000Z",
+          "sample_tweet_url": "https://x.com/dao_votes_hxzc/status/2059405613478670492",
+          "avg_per_post": 0
+        },
+        {
+          "author": "nickel_fuzz",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:45:10.000Z",
+          "sample_tweet_url": "https://x.com/nickel_fuzz/status/2059405511989096669",
+          "avg_per_post": 0
+        },
+        {
+          "author": "platinum_shiver",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:12:07.000Z",
+          "sample_tweet_url": "https://x.com/platinum_shiver/status/2059397196152537564",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Vinnessee",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T22:02:37.000Z",
+          "sample_tweet_url": "https://x.com/Vinnessee/status/2059394805273133271",
+          "avg_per_post": 0
+        },
+        {
+          "author": "gabrielf_03",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T21:14:34.000Z",
+          "sample_tweet_url": "https://x.com/gabrielf_03/status/2059382711056265402",
+          "avg_per_post": 0
+        },
+        {
+          "author": "AhmedBtalal",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T21:10:27.000Z",
+          "sample_tweet_url": "https://x.com/AhmedBtalal/status/2059381676501877193",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Liah_SYL",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T20:41:04.000Z",
+          "sample_tweet_url": "https://x.com/Liah_SYL/status/2059374280643608636",
+          "avg_per_post": 0
+        },
+        {
+          "author": "la_nikka",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T20:40:36.000Z",
+          "sample_tweet_url": "https://x.com/la_nikka/status/2059374163484131784",
+          "avg_per_post": 0
+        },
+        {
+          "author": "techy0x",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T20:13:12.000Z",
+          "sample_tweet_url": "https://x.com/techy0x/status/2059367267721150875",
+          "avg_per_post": 0
+        },
+        {
+          "author": "0xdoyy",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T19:41:17.000Z",
+          "sample_tweet_url": "https://x.com/0xdoyy/status/2059359235499246040",
+          "avg_per_post": 0
+        },
+        {
+          "author": "exsiway_",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T19:31:50.000Z",
+          "sample_tweet_url": "https://x.com/exsiway_/status/2059356856233939240",
+          "avg_per_post": 0
+        },
+        {
+          "author": "aixbt_agent",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T19:15:56.000Z",
+          "sample_tweet_url": "https://x.com/aixbt_agent/status/2059352855509885014",
+          "avg_per_post": 0
+        },
+        {
+          "author": "TarekAbuas98842",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T19:14:24.000Z",
+          "sample_tweet_url": "https://x.com/TarekAbuas98842/status/2059352471479476269",
+          "avg_per_post": 0
+        },
+        {
+          "author": "friskyardvark",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T19:10:47.000Z",
+          "sample_tweet_url": "https://x.com/friskyardvark/status/2059351560379834557",
+          "avg_per_post": 0
+        },
+        {
+          "author": "Gusnantaa",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T19:10:37.000Z",
+          "sample_tweet_url": "https://x.com/Gusnantaa/status/2059351518709678185",
+          "avg_per_post": 0
+        },
+        {
+          "author": "BiggerBackk3r",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T19:00:18.000Z",
+          "sample_tweet_url": "https://x.com/BiggerBackk3r/status/2059348922292928888",
+          "avg_per_post": 0
+        },
+        {
+          "author": "AIonBase_",
+          "posts": 1,
+          "total_attributed_usd": 0,
+          "last_seen": "2026-05-26T19:00:00.000Z",
+          "sample_tweet_url": "https://x.com/AIonBase_/status/2059348845272900047",
+          "avg_per_post": 0
+        }
+      ]
+    }
+  }
+}
