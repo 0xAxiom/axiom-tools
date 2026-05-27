@@ -1,0 +1,155 @@
+{
+  "$schema": "https://erc-8257.org/schema/v0.1.json",
+  "name": "agent-binding-scout",
+  "version": "1.0.0",
+  "description": "Discovery primitive for ERC-8217 agent-bound NFTs in any OpenSea collection. Pass a collection slug; receive the subset of NFTs that have an agent bound, each enriched with the inline binding payload (agent_id, binding_contract, agent { chain, token_id, contract_address }, registered_by). Built on the `has_agent_binding=true` filter that OpenSea added to its REST API in May 2026.",
+  "url": "https://axiom-tools-hazel.vercel.app/api/agent-binding-scout",
+  "pricing": {
+    "type": "x402",
+    "amount": "0.01",
+    "asset": "USDC",
+    "chain": "base",
+    "passBypass": {
+      "contract": "0xfc9ce3990f85fA1A3a0eE51a710642396a6Cad82",
+      "description": "AXIOM Tool Pass holders skip the paywall"
+    }
+  },
+  "authentication": {
+    "type": "x402",
+    "header": "x-payment",
+    "bypassHeader": "x-pass-holder"
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "method": {
+        "type": "string",
+        "enum": ["GET"],
+        "description": "GET only. Read the subset of agent-bound NFTs in a collection."
+      },
+      "query": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string",
+            "description": "OpenSea collection slug (e.g. 'normies'). Required."
+          },
+          "chain": {
+            "type": "string",
+            "default": "ethereum",
+            "description": "Chain identifier used for the per-NFT enrichment fetch. Defaults to 'ethereum'."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 5,
+            "description": "Number of bound NFTs to return. Capped at 10 — each entry costs one additional OpenSea call against a 60r/5min key."
+          }
+        },
+        "required": ["collection"]
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "collection":    { "type": "string" },
+      "chain":         { "type": "string" },
+      "fetchedAt":     { "type": "string", "format": "date-time" },
+      "bindingsFound": { "type": "integer" },
+      "next":          { "type": ["string", "null"], "description": "Opaque cursor from OpenSea for the next page of bound NFTs, or null when exhausted." },
+      "bindings": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "nft": {
+              "type": "object",
+              "properties": {
+                "identifier":  { "type": "string" },
+                "contract":    { "type": "string" },
+                "name":        { "type": ["string", "null"] },
+                "image_url":   { "type": ["string", "null"] },
+                "opensea_url": { "type": ["string", "null"] }
+              }
+            },
+            "binding": {
+              "type": ["object", "null"],
+              "description": "ERC-8217 agent_binding payload from OpenSea's get_nft endpoint",
+              "properties": {
+                "agent_id":         { "type": "string", "description": "ERC-8004 agent token id" },
+                "binding_contract": { "type": "string", "description": "ERC-8217 binding contract address" },
+                "agent": {
+                  "type": "object",
+                  "properties": {
+                    "chain":            { "type": "string" },
+                    "token_id":         { "type": "string" },
+                    "contract_address": { "type": "string", "description": "ERC-8004 adapter contract for the agent" }
+                  }
+                },
+                "registered_by": { "type": "string", "description": "Wallet that registered the binding" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Find the first 5 agent-bound Normies",
+      "request": {
+        "method": "GET",
+        "query": { "collection": "normies", "limit": 5 }
+      },
+      "response": {
+        "collection": "normies",
+        "chain": "ethereum",
+        "fetchedAt": "2026-05-27T18:00:00.000Z",
+        "bindingsFound": 5,
+        "next": "WyIyMDI2…",
+        "bindings": [
+          {
+            "nft": {
+              "identifier": "9852",
+              "contract": "0x9eb6e2025b64f340691e424b7fe7022ffde12438",
+              "name": "Normie #9852",
+              "image_url": "https://raw2.seadn.io/…/1226bd4155d26094b484fb8f36c64ffe.svg",
+              "opensea_url": "https://opensea.io/assets/ethereum/0x9eb6…/9852"
+            },
+            "binding": {
+              "agent_id": "32375",
+              "binding_contract": "0xde152afb7db5373f34876e1499fbd893a82dd336",
+              "agent": {
+                "chain": "ethereum",
+                "token_id": "32375",
+                "contract_address": "0x8004a169fb4a3325136eb29fa0ceb6d2e539a432"
+              },
+              "registered_by": "0xb3611da4a72fba65a80b0e7025b49431b193873e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "Scan a Base-native collection",
+      "request": {
+        "method": "GET",
+        "query": { "collection": "some-base-collection", "chain": "base", "limit": 3 }
+      },
+      "response": { "collection": "some-base-collection", "chain": "base", "bindingsFound": 0, "bindings": [], "next": null }
+    }
+  ],
+  "contact": {
+    "name": "Axiom",
+    "url": "https://clawbots.org/axiom",
+    "x": "@AxiomBot"
+  },
+  "chain": {
+    "network": "base",
+    "chainId": 8453
+  },
+  "tags": ["nft", "agent-binding", "erc-8217", "erc-8004", "opensea", "discovery", "agent-tools"],
+  "updatedAt": "2026-05-27"
+}
