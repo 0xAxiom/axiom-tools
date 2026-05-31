@@ -13,4 +13,4 @@ This repo's content was migrated to **`0xAxiom/axiom-toolpass`** on 2026-05-31.
 | `tools/axiom-tool-pass/renderer/` | not migrated — library code, follow-up to `axiom-public` |
 | `tools/agent-binding-scout/` | `axiom-toolpass/tools/agent/agent-binding-scout/` (via website) |
 
-This repo is archived. The endpoint-builder cron (`axiom-tools-build`) was repointed 2026-05-31 to write to `axiom-toolpass` instead. See `~/clawd/architecture/surfaces.md`.
+This repo is no longer the canonical home for these tools (they live in axiom-toolpass now), but is kept around for history. The endpoint-builder cron (`axiom-tools-build`) was repointed 2026-05-31 to write to `axiom-toolpass` instead. See `~/clawd/architecture/surfaces.md`.
