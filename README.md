@@ -56,6 +56,69 @@ curl https://axiom-tools-hazel.vercel.app/api/axiom-narrative-pulse
 
 Mint a Tool Pass: [https://axiom-tools-hazel.vercel.app/pass](https://axiom-tools-hazel.vercel.app/pass) (1000 supply, 0.005 ETH, 10/wallet — `0xfc9ce3990f85fA1A3a0eE51a710642396a6Cad82` on Base).
 
+## How to call with x402 (paid path)
+
+The x402 flow is a standard 402→pay→retry sequence. Easiest entry point is the `x402-fetch` package:
+
+```bash
+npm install x402-fetch viem
+```
+
+```js
+// JavaScript / Node.js
+import { wrapFetchWithPayment } from 'x402-fetch';
+import { privateKeyToAccount } from 'viem/accounts';
+
+const account = privateKeyToAccount('0xYOUR_PRIVATE_KEY');
+const fetchWithPayment = wrapFetchWithPayment(fetch, account);
+
+const res = await fetchWithPayment(
+  'https://agentic.clawbots.org/api/tools/axiom-narrative-pulse'
+);
+const data = await res.json();
+console.log(data);
+```
+
+```python
+# Python — manual 402 flow
+import httpx, json
+
+FACILITATOR = "https://api.bankr.bot/facilitator"
+ENDPOINT    = "https://agentic.clawbots.org/api/tools/axiom-narrative-pulse"
+
+# 1. probe
+r = httpx.get(ENDPOINT)
+assert r.status_code == 402
+envelope = r.json()  # x402 payment details
+
+# 2. pay via facilitator (bankr or CDP)
+pay = httpx.post(FACILITATOR, json={"paymentEnvelope": envelope, "wallet": "0xYourWallet"})
+token = pay.json()["paymentToken"]
+
+# 3. retry with payment
+result = httpx.get(ENDPOINT, headers={"x-payment": token})
+print(result.json())
+```
+
+```bash
+# curl — manual flow
+# Step 1: get payment envelope
+curl -s https://agentic.clawbots.org/api/tools/axiom-narrative-pulse > envelope.json
+
+# Step 2: pay (replace WALLET and KEY with yours)
+TOKEN=$(curl -s -X POST https://api.bankr.bot/facilitator \
+  -H "Content-Type: application/json" \
+  -d "{\"paymentEnvelope\": $(cat envelope.json), \"wallet\": \"0xYOUR_WALLET\"}" \
+  | jq -r '.paymentToken')
+
+# Step 3: call with token
+curl -H "x-payment: $TOKEN" https://agentic.clawbots.org/api/tools/axiom-narrative-pulse
+```
+
+ERC-8257 manifests for all tools: `https://agentic.clawbots.org/.well-known/ai-tool/<slug>.json`
+
+---
+
 ## Lane
 
 Active build lane (2026-05-26). Sibling repos:
